@@ -1,8 +1,10 @@
 ### A prioritization program for the unorganized.
 
 Just getting started here but the main ideas here is to have a user-friendly UI and system in a lightweight program that will allow a user to:  
+
 1. Enter in tasks, homework, anything and a Deadline Date.  
-The program will display the most urgent task along with some tips and queue up any additional added tasked based on their deadline. Until the list is clear, it will prompt you to complete taskes based on which is most urgent.  
+
+Based on this Data, the program will display the most urgent task along with some tips and queue up any additional added tasked based on their deadline. Until the list is clear, it will prompt you to complete taskes based on which is most urgent. Optionally the program will generate reports by the week, month, year or specific date range. These will include conclusive data long with tips based on how things are percieved.   
 
 ### Getting started  
 This program is in the super early phase of just an idea.  
