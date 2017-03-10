@@ -3,32 +3,24 @@
 #define _RUNTASKS_H_
 
 #include "task.h"
+#include <utility>
+#include <vector>
 
 class RunTasks {
+
 public:
-	bool operator< (const Date& lhs, const Date& rhs) {
-		if (lhs.year <= rhs.year) {
-			if (lhs.year < rhs.year) {
-				return true;
-			} else {
-				if (lhs.month <= rhs.month) {
-					if (lhs.month < lhs.month) {
-						return true;
-					} else {
-						if (lhs.day < rhs.day) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-		return false;
-	}
 
-	bool exec() {
+	void exec(bool &);
 
+private:
 
-	}
+	std::vector<Task> allTasks;
+
+	int menu(std::pair<int, int>& __minmax);
+	void createNewTask();
+	void viewAllTasks();
+	void viewHighestPriorityTask();
+
 };
 
 #endif

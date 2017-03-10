@@ -1,9 +1,12 @@
-#include "runtask.h"
-int main(const int argv, const char argc[][]) {
+#include "runtasks.h"
+
+int main() {
+
 	bool runtimestatus = true;
 
-	RunTask run;
-	runtimestatus = run.exec();
+	RunTasks run;
+	run.exec(runtimestatus);
 
 	return runtimestatus;
+
 }

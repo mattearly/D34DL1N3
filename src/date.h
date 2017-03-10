@@ -2,29 +2,31 @@
 #ifndef _DATE_H_
 #define _DATE_H_
 
+#include <string>
 
 class Date {
 public:
-	Date(int month, int day, int year);
-	void set_month(int month);
-	void set_day(int day);
-	void set_year(int year);
-	std::string get_date_string();
+	Date(int mm, int dd, int yyyy) : month{mm}, day{dd}, year{yyyy} {}
+	Date() : month(-1), day(-1), year(-1) {}
+	~Date(){}
+	void set_month(int mm);
+	void set_day(int dd);
+	void set_year(int yyyy);
+
+	int getMonth(void) const { return month; }
+	int getDay(void) const { return day; }
+	int getYear(void) const { return year; }
 
 	friend bool operator< (const Date& lhs, const Date& rhs);
 
-
-
 private:
 
-
-	Date();
-
-
+	int month, day, year;
 
 protected:
 
-}
+};
+
 
 
 #endif

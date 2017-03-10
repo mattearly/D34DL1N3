@@ -3,15 +3,20 @@
 #define _TASK_H_
 #include "date.h"
 
+
 class Task {
 public:
-	void New_Task(std::string taskname, Date due_date);
-	operator< (Task & compare);
-	
+	Task() : taskName(""), dueDate() {}
+	Task(std::string n, Date due) : taskName(n), dueDate(due) {}
+	std::string getName() { return taskName; }
+	Date getRawDate(void) const { return dueDate; }
+	int getMonth(void) const { return dueDate.getMonth(); }
+	int getDay(void) const { return dueDate.getDay(); }
+	int getYear(void) const { return dueDate.getYear(); }
 private:
-	Date due_date;
-	Task(){};
-}
+	std::string taskName;
+	Date dueDate;
+};
 
 
 #endif
