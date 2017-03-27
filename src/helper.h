@@ -4,10 +4,10 @@
 #include <iostream>
 #include <limits>
 #include <sstream>
+#include <type_traits>
 
 template<class T>
 T getNumber(const T& a, const T& b) {
-
 	T goodn = 0;
 	while (!(std::cin >> goodn) || (goodn < a || goodn > b)) {
 		std::cin.clear();
@@ -17,7 +17,7 @@ T getNumber(const T& a, const T& b) {
 	return goodn;
 }
 
-void clearTerminalScreen() {
+void clearTerminalScreen(void) {
 	for (int i=0; i < 45; i++) {
 		std::cout << "\n";
 	}
@@ -33,4 +33,4 @@ std::string toString(const T& a) {
 	return tmp;
 }
 
-#endif
+#endif  //_HELPER_H_

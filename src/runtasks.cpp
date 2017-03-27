@@ -1,17 +1,19 @@
 #include "runtasks.h"
 #include "helper.h"
+#include <fstream>
+#include <iomanip>
 
 using namespace std;
 
 bool operator< (const Date& lhs, const Date& rhs) {
 	if (lhs.year <= rhs.year) {
 		if (lhs.year < rhs.year) {
-			return true;
-		} else {
+			return true;  //year of left hand side is less
+		} else {  //years are equal, check month
 			if (lhs.month <= rhs.month) {
 				if (lhs.month < lhs.month) {
-					return true;
-				} else if (lhs.day < rhs.day) {
+					return true;  //month of left hand side is less
+				} else if (lhs.day < rhs.day) {  //months are equal check day
 					return true;
 				}
 			}
@@ -20,7 +22,13 @@ bool operator< (const Date& lhs, const Date& rhs) {
 	return false;
 }
 
-void RunTasks::exec(bool &success) {
+RunTasks::RunTasks() {
+	now = time(0);
+	ltm = localtime(&now);
+
+}
+
+void RunTasks::exec() {
 	int choice = 0;
 	pair<int, int> choice_minmax(0,3);
 	do {
@@ -40,14 +48,17 @@ void RunTasks::exec(bool &success) {
 			break;
 		default: break;
 		}
-		success = true;
 	} while (choice != choice_minmax.second);
 }
 
 
 int RunTasks::menu(pair<int, int>& __minmax) {
 	clearTerminalScreen();
-	cout << "Main Menu" << endl
+//	cout << "   /DATE\\\n    \\TIME/   \n";
+	printCurrentTime();
+	cout << endl;
+//	cout << "   /Main\\\n   \\Menu/\n"
+	cout << "Main Menu\n"
 		 << "0. New Task " << endl
 		 << "1. View Tasks" << endl
 		 << "2. Highest Priority Task" << endl
@@ -56,7 +67,7 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 	return (getNumber(__minmax.first, __minmax.second));
 }
 
-
+//prompt user via the terminal for a new task entry
 void RunTasks::createNewTask() {
 	clearTerminalScreen();
 	string tmpname;
@@ -74,6 +85,11 @@ void RunTasks::createNewTask() {
 	Date tmpdate(tmpmonth, tmpday, tmpyear);
 	Task tmptask(tmpname, tmpdate);
 	allTasks.push_back(tmptask);
+}
+
+//overloaded version to copy a full vector of already constructed tasks
+void RunTasks::createNewTask(vector<Task> &inctasks) {
+	allTasks = inctasks;
 }
 
 
@@ -132,3 +148,16 @@ void RunTasks::viewHighestPriorityTask() {
 }
 
 
+void RunTasks::printCurrentTime() {
+	//update time
+	now = time(0);
+	tm *ltm = localtime(&now);
+	// print date
+	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_mon << "/"
+		 << setw(2) << std::setfill('0') << ltm->tm_mday << "/"
+		 << setw(4) << std::setfill('0') << 1900 + ltm->tm_year << endl;
+	// print local time
+	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_hour << ":"
+		 << setw(2) << std::setfill('0') << 1 + ltm->tm_min << ":"
+		 << setw(2) << std::setfill('0') << 1 + ltm->tm_sec << endl;
+}

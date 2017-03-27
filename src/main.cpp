@@ -1,12 +1,6 @@
 #include "runtasks.h"
-
 int main() {
-
-	bool runtimestatus = true;
-
 	RunTasks run;
-	run.exec(runtimestatus);
-
-	return runtimestatus;
-
+	run.exec();
+	return 0;
 }
