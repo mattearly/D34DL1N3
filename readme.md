@@ -14,6 +14,13 @@ Build a user-friendly UI and system in a lightweight program that will allow a u
 
 
 ## ToDO
-1. Which graphic libraries to use?  SFML or Qt
+1. Which graphic libraries to use?  SFML or Qt or 
 2. Build a flowchart structure.
+	* Task Breakdown Feature (idea credited to @ebitikofer)
+		* creates subtasks with default name section/chapter/whatever
+		* user determines subtask size
+			* even divides or custom
+		* resplit based on what is left at any point
+		* great for big tasks way in the future
+	
 3. Concept
