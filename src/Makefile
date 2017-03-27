@@ -1,19 +1,25 @@
+# the makefile in the root folder (../makefile) calls this one
+# don't use this one on it's own
+
 
 TARGET = dtpriority
 OBJS = runtasks.o main.o task.o
-CPP = g++
-CPPFLAGS = -std=c++11 -Wall -g
-DEL = rm -f
+CC = g++
+CCFLAGS = -std=c++11 -Wall -g -O
+DEL = rm
+.PHONY: new clean
 
 
 $(TARGET): $(OBJS)
-	$(CPP) $(OBJS) $(CPPFLAGS) -o ../$(TARGET)
+	$(CC) $(OBJS) $(CCFLAGS) -o ../$(TARGET)
 
-.PHONY: clean
+
 clean:
 	$(DEL) $(OBJS)
 
 .cpp.o:
 	@echo BUILDING: $< -into- $@
-	$(CPP) -c $< $(CPPFLAGS)
+	$(CC) -c $< $(CCFLAGS)
+
+
 
