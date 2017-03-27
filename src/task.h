@@ -5,8 +5,8 @@
 
 class Task {
 public:
-	Task() : taskName(""), dueDate(), complete(false) {}
-	Task(std::string n, Date due) : taskName(n), dueDate(due), complete(false) {}
+	Task() : taskName(""), dueDate(), complete(false), pastDue(false) {}
+	Task(std::string n, Date due) : taskName(n), dueDate(due), complete(false), pastDue(false) {}
 
 	//accessors
 	std::string getName(void) { return taskName; }
@@ -18,6 +18,7 @@ private:
 	std::string taskName;
 	Date dueDate;
 	bool complete;
+	bool pastDue;
 };
 
 

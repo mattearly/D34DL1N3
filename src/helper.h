@@ -24,6 +24,12 @@ void clearTerminalScreen(void) {
 	std::cout << std::endl;
 }
 
+void pressEnterToContinue(void) {
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << "\n\nPress Enter to Continue...\n\n\n";
+	std::cin.get();
+}
+
 template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 std::string toString(const T& a) {
 	std::string tmp = "";

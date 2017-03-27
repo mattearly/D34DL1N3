@@ -44,7 +44,7 @@ void RunTasks::exec() {
 			viewHighestPriorityTask();
 			break;
 		case 3:
-			cout << "GoodBye" << endl;
+			cout << "\n\nGoodBye" << endl;
 			break;
 		default: break;
 		}
@@ -54,10 +54,8 @@ void RunTasks::exec() {
 
 int RunTasks::menu(pair<int, int>& __minmax) {
 	clearTerminalScreen();
-//	cout << "   /DATE\\\n    \\TIME/   \n";
 	printCurrentTime();
 	cout << endl;
-//	cout << "   /Main\\\n   \\Menu/\n"
 	cout << "Main Menu\n"
 		 << "0. New Task " << endl
 		 << "1. View Tasks" << endl
@@ -69,19 +67,30 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 
 //prompt user via the terminal for a new task entry
 void RunTasks::createNewTask() {
+	//update time
+	now = time(0);
+	tm *ltm = localtime(&now);
+
 	clearTerminalScreen();
 	string tmpname;
 	int tmpmonth, tmpday, tmpyear;
+
 	cout << "\nEnter a task name: ";
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	getline(cin, tmpname);
+
 	cout << "\nTask Due Date";
+
+	cout << "\nEnter year: ";
+	tmpyear = getNumber(1900 + ltm->tm_year, 9999);
+
 	cout << "\nEnter month: ";
-	tmpmonth = getNumber(1,12);
+	if (tmpyear == 1900 + ltm->tm_year) tmpmonth = getNumber(1 + ltm->tm_mon,12);
+	else tmpmonth = getNumber(1, 12);
+
 	cout << "\nEnter day: ";
 	tmpday = getNumber(1,31);
-	cout << "\nEnter year: ";
-	tmpyear = getNumber(2017, 2040);
+
 	Date tmpdate(tmpmonth, tmpday, tmpyear);
 	Task tmptask(tmpname, tmpdate);
 	allTasks.push_back(tmptask);
@@ -94,10 +103,10 @@ void RunTasks::createNewTask(vector<Task> &inctasks) {
 
 
 void RunTasks::viewAllTasks() {
+	cout << endl;
 	if (allTasks.size() < 1) {
 		cout << "No Tasks on list.";
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		cin.get();
+		pressEnterToContinue();
 		return;
 	}
 	for (auto & it : allTasks) {
@@ -105,25 +114,22 @@ void RunTasks::viewAllTasks() {
 			 << it.getMonth() << "/" << it.getDay() << "/" << it.getYear()
 			 << endl;
 	}
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	cin.get();
+	pressEnterToContinue();
 }
 
 
 void RunTasks::viewHighestPriorityTask() {
-
+	cout << endl;
 	if (allTasks.size() < 1) {
 		cout << "No Tasks on list.";
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		cin.get();
+		pressEnterToContinue();
 		return;
 	} else if (allTasks.size() == 1) {
 		cout << "Highest Priority: " << allTasks[0].getName() << " "
 			 << "Due: " << allTasks[0].getMonth() << "/" << allTasks[0].getDay()
 			 << "/" << allTasks[0].getYear()
 			 << endl;
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		cin.get();
+		pressEnterToContinue();
 		return;
 	}
 
@@ -141,9 +147,7 @@ void RunTasks::viewHighestPriorityTask() {
 		 << allTasks[highestpri].getDay()
 		 << "/" << allTasks[highestpri].getYear()
 		 << endl;
-
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	cin.get();
+	pressEnterToContinue();
 
 }
 
@@ -153,10 +157,12 @@ void RunTasks::printCurrentTime() {
 	now = time(0);
 	tm *ltm = localtime(&now);
 	// print date
+	cout << "sys date: ";
 	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_mon << "/"
 		 << setw(2) << std::setfill('0') << ltm->tm_mday << "/"
 		 << setw(4) << std::setfill('0') << 1900 + ltm->tm_year << endl;
 	// print local time
+	cout << "sys time: ";
 	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_hour << ":"
 		 << setw(2) << std::setfill('0') << 1 + ltm->tm_min << ":"
 		 << setw(2) << std::setfill('0') << 1 + ltm->tm_sec << endl;

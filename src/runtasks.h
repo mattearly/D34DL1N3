@@ -17,6 +17,10 @@ public:
 
 private:
 
+	//date time holding variables
+	std::time_t now;
+	tm *ltm;
+
 	std::vector<Task> allTasks;
 
 	int menu(std::pair<int, int>& __minmax);
@@ -29,6 +33,8 @@ private:
 
 	void viewHighestPriorityTask(void);
 
+	void printCurrentTime(void);
+
 	//build
 	void markTaskComplete(const std::size_t loc);
 
@@ -40,12 +46,6 @@ private:
 
 	void saveTasklist(const std::string filename);
 
-	//date time holding variables
-	std::time_t now;
-	tm *ltm;
-
-
-	void printCurrentTime(void);
 
 
 };
