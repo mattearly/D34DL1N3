@@ -35,7 +35,7 @@ private:
 
 	void printCurrentTime(void);
 
-	//build
+	//To build...
 	void markTaskComplete(const std::size_t loc);
 
 	void cleanTaskList(void);  //prompt removal of all out of date tasks

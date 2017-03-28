@@ -14,6 +14,8 @@ public:
 	int getMonth(void) const { return dueDate.getMonth(); }
 	int getDay(void) const { return dueDate.getDay(); }
 	int getYear(void) const { return dueDate.getYear(); }
+	int getHour(void) const { return dueDate.getHour(); }
+	int getMinute(void) const { return dueDate.getMinute(); }
 private:
 	std::string taskName;
 	Date dueDate;

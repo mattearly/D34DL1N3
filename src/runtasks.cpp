@@ -1,6 +1,5 @@
 #include "runtasks.h"
 #include "helper.h"
-#include <fstream>
 #include <iomanip>
 
 using namespace std;
@@ -11,18 +10,30 @@ bool operator< (const Date& lhs, const Date& rhs) {
 			return true;  //year of left hand side is less
 		} else {  //years are equal, check month
 			if (lhs.month <= rhs.month) {
-				if (lhs.month < lhs.month) {
+				if (lhs.month < rhs.month) {
 					return true;  //month of left hand side is less
-				} else if (lhs.day < rhs.day) {  //months are equal check day
-					return true;
+				} else if (lhs.day <= rhs.day) {  //months are equal check day
+					if (lhs.day < rhs.day) {
+						return true;  //left hand side day is sooner
+					} else { //days are equal, check hours
+						if (lhs.hour <= rhs.hour) {
+							if (lhs.hour < rhs.hour) {
+								return true;  //lhs is sooner
+							} else {  //hours are the same, check minutes
+								if (lhs.minute <= rhs.minute) {
+									return true;  //lhs is sooner
+								}
+							}
+						}
+					}
 				}
 			}
 		}
 	}
-	return false;
+	return false;  //rhs is less or lhs == rhs
 }
 
-RunTasks::RunTasks() {
+RunTasks::RunTasks() {  //set local system time at initial run
 	now = time(0);
 	ltm = localtime(&now);
 
@@ -30,7 +41,7 @@ RunTasks::RunTasks() {
 
 void RunTasks::exec() {
 	int choice = 0;
-	pair<int, int> choice_minmax(0,3);
+	pair<int, int> choice_minmax(0,5);
 	do {
 		choice = menu(choice_minmax);
 		switch (choice) {
@@ -44,6 +55,12 @@ void RunTasks::exec() {
 			viewHighestPriorityTask();
 			break;
 		case 3:
+			saveTasklist("testsave1");
+			break;
+		case 4:
+			loadTasklist("testsave1");
+			break;
+		case 5:
 			cout << "\n\nGoodBye" << endl;
 			break;
 		default: break;
@@ -60,7 +77,9 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 		 << "0. New Task " << endl
 		 << "1. View Tasks" << endl
 		 << "2. Highest Priority Task" << endl
-		 << "3. Quit" << endl
+		 << "3. Save" << endl
+		 << "4. Load" << endl
+		 << "5. Quit" << endl
 		 << "  Choice: ";
 	return (getNumber(__minmax.first, __minmax.second));
 }
@@ -73,7 +92,7 @@ void RunTasks::createNewTask() {
 
 	clearTerminalScreen();
 	string tmpname;
-	int tmpmonth, tmpday, tmpyear;
+	int tmpmonth, tmpday, tmpyear, tmphour, tmpmin;
 
 	cout << "\nEnter a task name: ";
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -91,7 +110,13 @@ void RunTasks::createNewTask() {
 	cout << "\nEnter day: ";
 	tmpday = getNumber(1,31);
 
-	Date tmpdate(tmpmonth, tmpday, tmpyear);
+	cout << "\nEnter Hour (24h format): ";
+	tmphour = getNumber(0, 23);
+
+	cout << "\nEnter Minute: ";
+	tmpmin = getNumber(0, 59);
+
+	Date tmpdate(tmpmonth, tmpday, tmpyear, tmphour, tmpmin);
 	Task tmptask(tmpname, tmpdate);
 	allTasks.push_back(tmptask);
 }
@@ -110,8 +135,12 @@ void RunTasks::viewAllTasks() {
 		return;
 	}
 	for (auto & it : allTasks) {
-		cout << it.getName() << " Due: "
+		cout << it.getName() << "\n   Due: "
 			 << it.getMonth() << "/" << it.getDay() << "/" << it.getYear()
+			 << " @ "
+			 << setw(2) << std::setfill('0') << it.getHour()
+			 << ":"
+			 << setw(2) << std::setfill('0') << it.getMinute()
 			 << endl;
 	}
 	pressEnterToContinue();
@@ -125,15 +154,18 @@ void RunTasks::viewHighestPriorityTask() {
 		pressEnterToContinue();
 		return;
 	} else if (allTasks.size() == 1) {
-		cout << "Highest Priority: " << allTasks[0].getName() << " "
-			 << "Due: " << allTasks[0].getMonth() << "/" << allTasks[0].getDay()
-			 << "/" << allTasks[0].getYear()
+		cout << allTasks[0].getName() << "\n   Due: "
+			 << allTasks[0].getMonth() << "/" << allTasks[0].getDay() << "/" << allTasks[0].getYear()
+			 << " @ "
+			 << setw(2) << std::setfill('0') << allTasks[0].getHour()
+			 << ":"
+			 << setw(2) << std::setfill('0') << allTasks[0].getMinute()
 			 << endl;
 		pressEnterToContinue();
 		return;
 	}
 
-	int highestpri = 0;  //vector location of highest priority found
+	int highestpri = 0;  //vector location of highest priority task found
 
 	for (size_t i = 0; i < allTasks.size()-1; i++) {
 		if (i == 0 && !(allTasks[i].getRawDate() < allTasks[i+1].getRawDate())) {
@@ -146,6 +178,10 @@ void RunTasks::viewHighestPriorityTask() {
 		 << "Due: " << allTasks[highestpri].getMonth() << "/"
 		 << allTasks[highestpri].getDay()
 		 << "/" << allTasks[highestpri].getYear()
+		 << " @ "
+		 << setw(2) << std::setfill('0') << allTasks[highestpri].getHour()
+		 << ":"
+		 << setw(2) << std::setfill('0') << allTasks[highestpri].getMinute()
 		 << endl;
 	pressEnterToContinue();
 
@@ -157,12 +193,12 @@ void RunTasks::printCurrentTime() {
 	now = time(0);
 	tm *ltm = localtime(&now);
 	// print date
-	cout << "sys date: ";
+	cout << "system date: ";
 	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_mon << "/"
 		 << setw(2) << std::setfill('0') << ltm->tm_mday << "/"
 		 << setw(4) << std::setfill('0') << 1900 + ltm->tm_year << endl;
 	// print local time
-	cout << "sys time: ";
+	cout << "system time: ";
 	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_hour << ":"
 		 << setw(2) << std::setfill('0') << 1 + ltm->tm_min << ":"
 		 << setw(2) << std::setfill('0') << 1 + ltm->tm_sec << endl;
