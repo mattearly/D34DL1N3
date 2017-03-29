@@ -10,19 +10,16 @@ _A prioritization program for the unorganized_ (tm)
 	* Feed in tasks, homework, or anything a hard "Deadline" date.
 	* Based on this data, the program will display the most urgent task that needs completed
 
-2.
-
 ---
 
 ## ToDo List (revise frequently)
 1. Which graphic libraries to use?
-
-	[ ] SFML
-	[ ] Qt
-	[ ] Electron
-	[ ] SDL2
-	[X] Terminal : By a programmer for a programmer
-	[ ] Other Options
+    * SFML
+    * Qt
+    * Electron
+    * SDL2
+    * Terminal : By a programmer for a programmer
+    * Other Options
 
 2. Task Breakdown Feature (idea mainly credited to @ebitikofer)
 	* creates subtasks with default name section/chapter/whatever
