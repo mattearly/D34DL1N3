@@ -10,9 +10,9 @@ class RunTasks {
 
 public:
 
-	RunTasks();
+	RunTasks();  //built in runtasks.cpp
 
-	void exec();
+	void exec();  //built in runtasks.cpp
 
 private:
 
@@ -22,28 +22,38 @@ private:
 
 	std::vector<Task> allTasks;
 
-	int menu(std::pair<int, int>& __minmax);
+	int menu(std::pair<int, int>& __minmax);  //built in runtasks.cpp
 
-	void createNewTask(void);
+	void createNewTask(void);  //built in runtasks.cpp
 
-	void createNewTask(std::vector<Task> &inctasks);
+	void createNewTask(std::vector<Task> &inctasks);  //built in runtasks.cpp
 
-	void viewAllTasks(void);
+	void viewAllTasks(void);  //built in runtasks.cpp
 
-	void viewHighestPriorityTask(void);
+	void viewHighestPriorityTask(void);  //built in runtasks.cpp
 
-	void printCurrentTime(void);
+	void printCurrentTime(void);  //built in runtasks.cpp
+
+	void loadTasklist(const std::string filename);  //built in runtasks_save_load.cpp
+
+	void saveTasklist(const std::string filename);  //built in runtasks_save_load.cpp
 
 	//To build...
+	//
+	//
+
+	//Mark a task as complete option - not sure if this is going to be used
 	void markTaskComplete(const std::size_t loc);
 
-	void cleanTaskList(void);  //prompt removal of all out of date tasks
+	//prompt removal of all out of date tasks
+	void cleanTaskList(void);
 
+	//based on exact name
 	void removeTask(const std::string taskname);
 
-	void loadTasklist(const std::string filename);
+	//bring up prompt version
+	void removeTask();
 
-	void saveTasklist(const std::string filename);
 
 };
 

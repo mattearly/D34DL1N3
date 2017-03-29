@@ -12,7 +12,7 @@ _A prioritization program for the unorganized_
 
 ---
 
-## ToDo List (revise frequently)
+## ToDo List (in no particular order) (revise frequently)
 1. Which graphic libraries to use?
     * SFML
     * Qt
@@ -42,3 +42,4 @@ _A prioritization program for the unorganized_
 	* Clean up / make clearer later
 	* Live Clock Ticker
 	* Build Terminal Graphic Library (@ebitikofer)
+	* Time Left

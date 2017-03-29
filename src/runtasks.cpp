@@ -43,48 +43,53 @@ RunTasks::RunTasks() {  //set local system time at initial run
 
 void RunTasks::exec() {
 	int choice = 0;
-	pair<int, int> choice_minmax(0,5);
+	pair<int, int> choice_minmax(0,9);
 	do {
 		choice = menu(choice_minmax);
 		switch (choice) {
 		case 0:
-			createNewTask();
-			break;
-		case 1:
-			viewAllTasks();
-			break;
-		case 2:
-			viewHighestPriorityTask();
-			break;
-		case 3:
-			saveTasklist("testsave1");
-			break;
-		case 4:
-			loadTasklist("testsave1");
-			break;
-		case 5:
 			cout << "\n\nGoodBye" << endl;
 			break;
+		case 1:
+			createNewTask();
+			break;
+		case 2:
+			removeTask();
+			break;
+		case 3:
+			viewAllTasks();
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			saveTasklist("testsave1");
 		default: break;
 		}
-	} while (choice != choice_minmax.second);
+	} while (choice != 0);
 }
 
 
 int RunTasks::menu(pair<int, int>& __minmax) {
 	clearTerminalScreen();
 	viewHighestPriorityTask();
+	cout << endl;
 	printCurrentTime();
 	cout << endl;
-	cout << "Main Menu\n"
-		 << "0. New Task " << endl
-		 << "1. View Tasks" << endl
-		 << "2. Highest Priority Task" << endl
-		 << "3. Save" << endl
-		 << "4. Load" << endl
-		 << "5. Quit" << endl
-		 << "  Choice: ";
-	return (getNumber(__minmax.first, __minmax.second));
+	cout << "_____________Main Menu_____________\n"  << left
+		 << setw(16) << "1. Add Task"      << " | " << "6. " << endl
+		 << setw(16) << "2. Remove Task"   << " | " << "7. " << endl
+		 << setw(16) << "3. See Tasks"     << " | " << "8. " << endl
+		 << setw(16) << "4. "              << " | " << "9. Save Tasks" << endl
+		 << setw(16) << "5. "              << " | " << "0. Quit Program" << endl;
+	return (getNumber("\n  Choice:  ", __minmax.first, __minmax.second));
 }
 
 //prompt user via the terminal for a new task entry
@@ -156,8 +161,8 @@ void RunTasks::viewHighestPriorityTask() {
 		cout << "No Tasks on list.\n";
 		return;
 	} else if (allTasks.size() == 1) {
-		cout << "Priority Task: " << allTasks[0].getName()
-			 << " Due: " << allTasks[0].getMonth() << "/"
+		cout << "__________Priority Task__________\n" << allTasks[0].getName()
+			 << "\n  Due: " << allTasks[0].getMonth() << "/"
 			 << allTasks[0].getDay() << "/" << allTasks[0].getYear()
 			 << " @ "
 			 << setw(2) << std::setfill('0') << allTasks[0].getHour()
@@ -176,8 +181,8 @@ void RunTasks::viewHighestPriorityTask() {
 			highestpri = i+1;
 		}
 	}
-	cout << "Priority Task: " << allTasks[highestpri].getName()
-		 << " Due: " << allTasks[highestpri].getMonth() << "/"
+	cout << "___________Priority Task___________\n1. " << allTasks[highestpri].getName()
+		 << "\n   Due: " << allTasks[highestpri].getMonth() << "/"
 		 << allTasks[highestpri].getDay()
 		 << "/" << allTasks[highestpri].getYear()
 		 << " @ "
@@ -192,13 +197,49 @@ void RunTasks::printCurrentTime() {
 	now = time(0);
 	tm *ltm = localtime(&now);
 	// print time to screen
-	cout << "Current Time: ";
+	cout << "___________Current Time____________\n";
 	// print local time
-	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_hour << ":"
-		 << setw(2) << std::setfill('0') << 1 + ltm->tm_min << ":"
-		 << setw(2) << std::setfill('0') << 1 + ltm->tm_sec << " ";
+	int hour = ltm->tm_hour;
+	string AMPM = "AM";
+	if (hour > 12) { hour = hour - 12; AMPM = "PM"; }
+	cout << std::setfill('0');
+	cout << "   ";
+	cout << setw(2) << hour << ":"
+		 << setw(2) << 1 + ltm->tm_min
+		 << AMPM << "  ";
+//		 << setw(2) << 1 + ltm->tm_sec << " ";
 	// print date
-	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_mon << "/"
-		 << setw(2) << std::setfill('0') << ltm->tm_mday << "/"
-		 << setw(4) << std::setfill('0') << 1900 + ltm->tm_year << endl;
+	cout << setw(2) << 1 + ltm->tm_mon << "/"
+		 << setw(2) << ltm->tm_mday << "/"
+		 << setw(4) << 1900 + ltm->tm_year << endl;
+	cout << std::setfill(' ');
 }
+
+void RunTasks::removeTask() {
+	clearTerminalScreen();
+	if (allTasks.size() < 1) {
+		cout << "No Tasks on list.";
+		pressEnterToContinue();
+		return;
+	}
+	int _count(0);
+	int _choice(0);
+	cout << "All your Tasks:";
+	for (auto & it : allTasks) {
+		_count++;
+		cout << "\n" << _count << ". "
+			 << it.getName() << "\n    Due: "
+			 << it.getMonth() << "/" << it.getDay() << "/" << it.getYear()
+			 << " @ "
+			 << setw(2) << std::setfill('0') << it.getHour()
+			 << ":"
+			 << setw(2) << std::setfill('0') << it.getMinute()
+			 << endl;
+	}
+	cout << "\nWhich would you like to remove (by number): ";
+	_choice = getNumber(1, _count);
+	allTasks.erase(allTasks.begin()+_choice);
+	cout << "\nRemoval complete\n";
+	pressEnterToContinue();
+}
+
