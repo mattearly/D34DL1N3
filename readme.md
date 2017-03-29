@@ -41,3 +41,4 @@ _A prioritization program for the unorganized_
 	* First, make it work
 	* Clean up / make clearer later
 	* Live Clock Ticker
+	* Build Terminal Graphic Library (@ebitikofer)
