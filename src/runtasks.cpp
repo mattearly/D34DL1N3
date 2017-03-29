@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 bool operator< (const Date& lhs, const Date& rhs) {
 	if (lhs.year <= rhs.year) {
 		if (lhs.year < rhs.year) {
@@ -38,6 +37,7 @@ bool operator< (const Date& lhs, const Date& rhs) {
 RunTasks::RunTasks() {  //set local system time at initial run
 	now = time(0);
 	ltm = localtime(&now);
+	loadTasklist("testsave1");
 
 }
 
@@ -73,6 +73,7 @@ void RunTasks::exec() {
 
 int RunTasks::menu(pair<int, int>& __minmax) {
 	clearTerminalScreen();
+	viewHighestPriorityTask();
 	printCurrentTime();
 	cout << endl;
 	cout << "Main Menu\n"
@@ -152,11 +153,12 @@ void RunTasks::viewAllTasks() {
 void RunTasks::viewHighestPriorityTask() {
 	cout << endl;
 	if (allTasks.size() < 1) {
-		cout << "No Tasks on list.";
+		cout << "No Tasks on list.\n";
 		return;
 	} else if (allTasks.size() == 1) {
-		cout << allTasks[0].getName() << "\n   Due: "
-			 << allTasks[0].getMonth() << "/" << allTasks[0].getDay() << "/" << allTasks[0].getYear()
+		cout << "Priority Task: " << allTasks[0].getName()
+			 << " Due: " << allTasks[0].getMonth() << "/"
+			 << allTasks[0].getDay() << "/" << allTasks[0].getYear()
 			 << " @ "
 			 << setw(2) << std::setfill('0') << allTasks[0].getHour()
 			 << ":"
@@ -174,8 +176,8 @@ void RunTasks::viewHighestPriorityTask() {
 			highestpri = i+1;
 		}
 	}
-	cout << "Highest Priority: " << allTasks[highestpri].getName() << " "
-		 << "Due: " << allTasks[highestpri].getMonth() << "/"
+	cout << "Priority Task: " << allTasks[highestpri].getName()
+		 << " Due: " << allTasks[highestpri].getMonth() << "/"
 		 << allTasks[highestpri].getDay()
 		 << "/" << allTasks[highestpri].getYear()
 		 << " @ "
@@ -183,8 +185,6 @@ void RunTasks::viewHighestPriorityTask() {
 		 << ":"
 		 << setw(2) << std::setfill('0') << allTasks[highestpri].getMinute()
 		 << endl;
-	pressEnterToContinue();
-
 }
 
 void RunTasks::printCurrentTime() {
@@ -196,7 +196,7 @@ void RunTasks::printCurrentTime() {
 	// print local time
 	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_hour << ":"
 		 << setw(2) << std::setfill('0') << 1 + ltm->tm_min << ":"
-		 << setw(2) << std::setfill('0') << 1 + ltm->tm_sec << "  ";
+		 << setw(2) << std::setfill('0') << 1 + ltm->tm_sec << " ";
 	// print date
 	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_mon << "/"
 		 << setw(2) << std::setfill('0') << ltm->tm_mday << "/"
