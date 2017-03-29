@@ -7,6 +7,9 @@
 class Date {
 public:
 
+	//compare dates
+	friend bool operator< (const Date& lhs, const Date& rhs);
+
 	//Valid clamping assumed to be done by input module
 	Date(int mm, int dd, int yyyy) : month(mm), day(dd), year(yyyy), hour(0), minute(1) {}
 	Date(int mm, int dd, int yyyy, int hh, int mi) : month(mm), day(dd), year(yyyy), hour(hh), minute(mi) {}
@@ -27,9 +30,6 @@ public:
 	int getHour(void) const { return hour; }
 	int getMinute(void) const { return minute; }
 
-	// lhs = left hand side, rhs = right hand side
-	friend bool operator< (const Date& lhs, const Date& rhs);
-
 private:
 
 	int month, day, year;
@@ -38,6 +38,7 @@ private:
 protected:
 
 };
+
 
 
 

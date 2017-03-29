@@ -3,7 +3,7 @@
 
 
 TARGET = dtpriority
-OBJS = runtasks.o main.o task.o runtasks_save_load.o
+OBJS = runtasks.o main.o runtasks_save_load.o
 CC = g++
 CCFLAGS = -std=c++11 -Wall -g -O
 DEL = rm
@@ -16,6 +16,7 @@ $(TARGET): $(OBJS)
 
 clean:
 	$(DEL) $(OBJS)
+
 
 .cpp.o:
 	@echo BUILDING: $< -into- $@

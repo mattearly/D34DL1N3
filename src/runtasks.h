@@ -1,7 +1,6 @@
 #pragma once
 #ifndef _RUNTASKS_H_
 #define _RUNTASKS_H_
-
 #include "task.h"
 #include <utility>
 #include <vector>
@@ -45,8 +44,6 @@ private:
 	void loadTasklist(const std::string filename);
 
 	void saveTasklist(const std::string filename);
-
-
 
 };
 
