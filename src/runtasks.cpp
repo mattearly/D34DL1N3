@@ -153,7 +153,6 @@ void RunTasks::viewHighestPriorityTask() {
 	cout << endl;
 	if (allTasks.size() < 1) {
 		cout << "No Tasks on list.";
-		pressEnterToContinue();
 		return;
 	} else if (allTasks.size() == 1) {
 		cout << allTasks[0].getName() << "\n   Due: "
@@ -163,7 +162,6 @@ void RunTasks::viewHighestPriorityTask() {
 			 << ":"
 			 << setw(2) << std::setfill('0') << allTasks[0].getMinute()
 			 << endl;
-		pressEnterToContinue();
 		return;
 	}
 
@@ -193,14 +191,14 @@ void RunTasks::printCurrentTime() {
 	//update time
 	now = time(0);
 	tm *ltm = localtime(&now);
+	// print time to screen
+	cout << "Current Time: ";
+	// print local time
+	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_hour << ":"
+		 << setw(2) << std::setfill('0') << 1 + ltm->tm_min << ":"
+		 << setw(2) << std::setfill('0') << 1 + ltm->tm_sec << "  ";
 	// print date
-	cout << "system date: ";
 	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_mon << "/"
 		 << setw(2) << std::setfill('0') << ltm->tm_mday << "/"
 		 << setw(4) << std::setfill('0') << 1900 + ltm->tm_year << endl;
-	// print local time
-	cout << "system time: ";
-	cout << setw(2) << std::setfill('0') << 1 + ltm->tm_hour << ":"
-		 << setw(2) << std::setfill('0') << 1 + ltm->tm_min << ":"
-		 << setw(2) << std::setfill('0') << 1 + ltm->tm_sec << endl;
 }

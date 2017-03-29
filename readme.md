@@ -1,6 +1,6 @@
-#D34DLINE Task Priority (c)
+#D34DLINE Task Priority
 
-_A prioritization program for the unorganized_ (tm)
+_A prioritization program for the unorganized_
 
 ---
 
