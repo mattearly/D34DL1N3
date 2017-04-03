@@ -5,40 +5,10 @@
 
 using namespace std;
 
-bool operator< (const Date& lhs, const Date& rhs) {
-	if (lhs.year <= rhs.year) {
-		if (lhs.year < rhs.year) {
-			return true;  //year of left hand side is less
-		} else {  //years are equal, check month
-			if (lhs.month <= rhs.month) {
-				if (lhs.month < rhs.month) {
-					return true;  //month of left hand side is less
-				} else if (lhs.day <= rhs.day) {  //months are equal check day
-					if (lhs.day < rhs.day) {
-						return true;  //left hand side day is sooner
-					} else { //days are equal, check hours
-						if (lhs.hour <= rhs.hour) {
-							if (lhs.hour < rhs.hour) {
-								return true;  //lhs is sooner
-							} else {  //hours are the same, check minutes
-								if (lhs.minute <= rhs.minute) {
-									return true;  //lhs is sooner
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	return false;  //rhs is less or lhs == rhs
-}
-
 RunTasks::RunTasks() {  //set local system time at initial run
 	now = time(0);
 	ltm = localtime(&now);
 	loadTasklist("testsave1");
-
 }
 
 void RunTasks::exec() {
@@ -146,9 +116,9 @@ void RunTasks::viewAllTasks() {
 		cout << it.getName() << "\n   Due: "
 			 << it.getMonth() << "/" << it.getDay() << "/" << it.getYear()
 			 << " @ "
-			 << setw(2) << std::setfill('0') << it.getHour()
+			 << setw(2) << std::setfill('0') << right << it.getHour()
 			 << ":"
-			 << setw(2) << std::setfill('0') << it.getMinute()
+			 << setw(2) << std::setfill('0') << right << it.getMinute()
 			 << endl;
 	}
 	pressEnterToContinue();
@@ -164,32 +134,36 @@ void RunTasks::viewHighestPriorityTask() {
 		cout << "__________Priority Task__________\n" << allTasks[0].getName()
 			 << "\n  Due: " << allTasks[0].getMonth() << "/"
 			 << allTasks[0].getDay() << "/" << allTasks[0].getYear()
-			 << " @ "
-			 << setw(2) << std::setfill('0') << allTasks[0].getHour()
-			 << ":"
-			 << setw(2) << std::setfill('0') << allTasks[0].getMinute()
-			 << endl;
+			 << " @ ";
+		string AM_PM = "AM";
+		int hour = allTasks[0].getHour();
+		if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
+		cout << hour << ":"
+			 << setw(2) << std::setfill('0') << right << allTasks[0].getMinute()
+			 << AM_PM << endl;
 		return;
-	}
-
-	int highestpri = 0;  //vector location of highest priority task found
-
-	for (size_t i = 0; i < allTasks.size()-1; i++) {
-		if (i == 0 && !(allTasks[i].getRawDate() < allTasks[i+1].getRawDate())) {
-			highestpri = i+1;
-		} else if (!(allTasks[highestpri].getRawDate() < allTasks[i+1].getRawDate())) {
-			highestpri = i+1;
+	} else {
+		int highestpri = 0;  //vector location of highest priority task found
+		for (size_t i = 0; i < allTasks.size()-1; i++) {
+			if (i == 0 && !(allTasks[i].getRawDate() < allTasks[i+1].getRawDate())) {
+				highestpri = i+1;
+			} else if (!(allTasks[highestpri].getRawDate() < allTasks[i+1].getRawDate())) {
+				highestpri = i+1;
+			}
 		}
+		cout << "___________Priority Task___________\n1. "
+			 << allTasks[highestpri].getName()
+			 << "\n   Due: " << allTasks[highestpri].getMonth() << "/"
+			 << allTasks[highestpri].getDay()
+			 << "/" << allTasks[highestpri].getYear()
+			 << " @ ";
+		string AM_PM = "AM";
+		int hour = allTasks[highestpri].getHour();
+		if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
+		cout << hour << ":"
+			 << setw(2) << std::setfill('0') << right << allTasks[highestpri].getMinute()
+			 << AM_PM << endl;
 	}
-	cout << "___________Priority Task___________\n1. " << allTasks[highestpri].getName()
-		 << "\n   Due: " << allTasks[highestpri].getMonth() << "/"
-		 << allTasks[highestpri].getDay()
-		 << "/" << allTasks[highestpri].getYear()
-		 << " @ "
-		 << setw(2) << std::setfill('0') << allTasks[highestpri].getHour()
-		 << ":"
-		 << setw(2) << std::setfill('0') << allTasks[highestpri].getMinute()
-		 << endl;
 }
 
 void RunTasks::printCurrentTime() {
@@ -200,17 +174,17 @@ void RunTasks::printCurrentTime() {
 	cout << "___________Current Time____________\n";
 	// print local time
 	int hour = ltm->tm_hour;
-	string AMPM = "AM";
-	if (hour > 12) { hour = hour - 12; AMPM = "PM"; }
+	string AM_PM = "AM";
+	if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
 	cout << std::setfill('0');
 	cout << "   ";
-	cout << setw(2) << hour << ":"
-		 << setw(2) << 1 + ltm->tm_min
-		 << AMPM << "  ";
-//		 << setw(2) << 1 + ltm->tm_sec << " ";
+	cout << setw(2) << right << hour << ":"
+		 << setw(2) << right << ltm->tm_min
+		 << AM_PM << "  ";
+	//		 << setw(2) << 1 + ltm->tm_sec << " ";  //no seconds
 	// print date
-	cout << setw(2) << 1 + ltm->tm_mon << "/"
-		 << setw(2) << ltm->tm_mday << "/"
+	cout << setw(2) << right << 1 + ltm->tm_mon << "/"
+		 << setw(2) << right << ltm->tm_mday << "/"
 		 << setw(4) << 1900 + ltm->tm_year << endl;
 	cout << std::setfill(' ');
 }
@@ -242,4 +216,35 @@ void RunTasks::removeTask() {
 	cout << "\nRemoval complete\n";
 	pressEnterToContinue();
 }
+
+
+bool operator< (const Date& lhs, const Date& rhs) {
+	if (lhs.year <= rhs.year) {
+		if (lhs.year < rhs.year) {
+			return true;  //year of left hand side is less
+		} else {  //years are equal, check month
+			if (lhs.month <= rhs.month) {
+				if (lhs.month < rhs.month) {
+					return true;  //month of left hand side is less
+				} else if (lhs.day <= rhs.day) {  //months are equal check day
+					if (lhs.day < rhs.day) {
+						return true;  //left hand side day is sooner
+					} else { //days are equal, check hours
+						if (lhs.hour <= rhs.hour) {
+							if (lhs.hour < rhs.hour) {
+								return true;  //lhs is sooner
+							} else {  //hours are the same, check minutes
+								if (lhs.minute <= rhs.minute) {
+									return true;  //lhs is sooner
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return false;  //rhs is less or lhs == rhs
+}
+
 

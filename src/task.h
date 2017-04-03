@@ -3,6 +3,7 @@
 #define _TASK_H_
 #include "date.h"
 
+
 class Task {
 public:
 	Task() : taskName(""), dueDate(), complete(false), pastDue(false) {}

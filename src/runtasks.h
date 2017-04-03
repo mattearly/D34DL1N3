@@ -34,6 +34,8 @@ private:
 
 	void printCurrentTime(void);  //built in runtasks.cpp
 
+	void removeTask(void);  //built in runtasks.cpp
+
 	void loadTasklist(const std::string filename);  //built in runtasks_save_load.cpp
 
 	void saveTasklist(const std::string filename);  //built in runtasks_save_load.cpp
@@ -51,9 +53,8 @@ private:
 	//based on exact name
 	void removeTask(const std::string taskname);
 
-	//bring up prompt version
-	void removeTask();
-
+	//edit task submenu to make any changes to an existing task
+	void editTask(void);
 
 };
 
