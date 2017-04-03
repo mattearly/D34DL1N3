@@ -69,12 +69,15 @@ void RunTasks::createNewTask() {
 	tm *ltm = localtime(&now);
 
 	clearTerminalScreen();
-	string tmpname;
+	string tmpname = "";
 	int tmpmonth, tmpday, tmpyear, tmphour, tmpmin;
 
-	cout << "\nEnter a task name: ";
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	getline(cin, tmpname);
+	do {
+		cout << "\nEnter a task name: ";
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		getline(cin, tmpname);
+		tmpname = reduce(tmpname);  //tighen her up
+	} while (tmpname.size() <= 1);  //cant imagine 1 character being enough to desribe a task...
 
 	cout << "\nTask Due Date";
 
