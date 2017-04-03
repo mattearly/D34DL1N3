@@ -59,4 +59,4 @@ target/
 Cargo.lock
 
 # Personal Save Folder
-saves./test*
+saves/test*
