@@ -12,6 +12,14 @@ _A prioritization program for the unorganized_
 
 ---
 
+## Install (linux command line only)
+
+1. ````git clone https://github.com/bytePro17124/D34DL1NE_Task_Priority/````
+2. ````cd D34DL1NE_Task_Priority````
+3. ````make run````
+
+---
+
 ## ToDo List (in no particular order) (revise frequently)
 1. Which graphic libraries to use?
     * SFML
