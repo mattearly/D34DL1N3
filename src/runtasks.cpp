@@ -208,14 +208,14 @@ void RunTasks::removeTask() {
 			 << it.getName() << "\n    Due: "
 			 << it.getMonth() << "/" << it.getDay() << "/" << it.getYear()
 			 << " @ "
-			 << setw(2) << std::setfill('0') << it.getHour()
+			 << setw(2) << std::setfill('0') << right << it.getHour()
 			 << ":"
-			 << setw(2) << std::setfill('0') << it.getMinute()
+			 << setw(2) << std::setfill('0') << right << it.getMinute()
 			 << endl;
 	}
 	cout << "\nWhich would you like to remove (by number): ";
 	_choice = getNumber(1, _count);
-	allTasks.erase(allTasks.begin()+_choice);
+	allTasks.erase(allTasks.begin() - 1 + _choice);
 	cout << "\nRemoval complete\n";
 	pressEnterToContinue();
 }
