@@ -58,5 +58,5 @@ target/
 
 Cargo.lock
 
-# Personal Save Folder
-saves/testsave1
+# Personal Save File
+testsave1
