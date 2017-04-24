@@ -17,9 +17,6 @@ void RunTasks::exec() {
 	do {
 		choice = menu(choice_minmax);
 		switch (choice) {
-		case 0:
-			cout << "\n\nGoodBye" << endl;
-			break;
 		case 1:
 			createNewTask();
 			break;
@@ -41,7 +38,12 @@ void RunTasks::exec() {
 			break;
 		case 9:
 			saveTasklist("testsave1");
-		default: break;
+		case 0:
+			cout << "\n\nGoodBye\n";
+			break;
+		default:
+			cout << "\nInvalid Choice\n";
+			break;
 		}
 	} while (choice != 0);
 }
@@ -57,7 +59,7 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 		 << setw(16) << "1. Add Task"      << " | " << "6. " << endl
 		 << setw(16) << "2. Remove Task"   << " | " << "7. " << endl
 		 << setw(16) << "3. See Tasks"     << " | " << "8. " << endl
-		 << setw(16) << "4. "              << " | " << "9. Save Tasks" << endl
+		 << setw(16) << "4. "              << " | " << "9. Write Out/Save Tasks" << endl
 		 << setw(16) << "5. "              << " | " << "0. Quit Program" << endl;
 	return (getNumber("\n  Choice:  ", __minmax.first, __minmax.second));
 }
