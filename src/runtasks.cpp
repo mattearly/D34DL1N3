@@ -16,9 +16,12 @@ void RunTasks::exec() {
 	pair<int, int> choice_minmax(0,9);
 	do {
 		choice = menu(choice_minmax);
+		latestMessage = "\n";
+
 		switch (choice) {
 		case 1:
 			createNewTask();
+			latestMessage.insert(0, "New Task Created!");
 			break;
 		case 2:
 			removeTask();
@@ -38,6 +41,7 @@ void RunTasks::exec() {
 			break;
 		case 9:
 			saveTasklist("testsave1");
+			latestMessage.insert(0, "State Saved!");
 		case 0:
 			cout << "\n\nGoodBye\n";
 			break;
@@ -55,13 +59,14 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 	cout << endl;
 	printCurrentTime();
 	cout << endl;
-	cout << "_____________Main Menu_____________\n"  << left
+	cout << latestMessage
+		 << "_____________Main Menu_____________\n"  << left
 		 << setw(16) << "1. Add Task"      << " | " << "6. " << endl
 		 << setw(16) << "2. Remove Task"   << " | " << "7. " << endl
 		 << setw(16) << "3. See Tasks"     << " | " << "8. " << endl
-		 << setw(16) << "4. "              << " | " << "9. Write Out/Save Tasks" << endl
+		 << setw(16) << "4. "              << " | " << "9. Save State" << endl
 		 << setw(16) << "5. "              << " | " << "0. Quit Program" << endl;
-	return (getNumber("\n  Choice:  ", __minmax.first, __minmax.second));
+	return (getNumber("\n   Choice:  ", __minmax.first, __minmax.second));
 }
 
 //prompt user via the terminal for a new task entry

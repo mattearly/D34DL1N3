@@ -22,6 +22,8 @@ private:
 
 	std::vector<Task> allTasks;
 
+	std::string latestMessage;  //variable to display the user status updates
+
 	int menu(std::pair<int, int>& __minmax);  //built in runtasks.cpp
 
 	void createNewTask(void);  //built in runtasks.cpp
