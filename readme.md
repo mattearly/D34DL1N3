@@ -16,7 +16,7 @@ _A prioritization program for the unorganized_
 
 _This program will show at the top the next task that is due, the one you **should** be working on_
 
-<img src="Screenshots/D34DL1NE_Task_Priority_main_menu_screenshot.png" height="144px" align="right">
+<img src="res/cli_screenshot_mm.png" height="144px" align="right">
 
 1. Add tasks along with their hard due date
 2. Remove them when they are complete
