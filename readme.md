@@ -12,6 +12,17 @@ _A prioritization program for the unorganized_
 
 ---
 
+## Basic Idea and Use
+
+_This program will show at the top the next task that is due, the one you **should** be working on_
+
+<img src="Screenshots/D34DL1NE_Task_Priority_main_menu_screenshot.png" height="144px" align="right">
+
+1. Add tasks along with their hard due date
+2. Remove them when they are complete
+
+---
+
 ## Install (linux command line only)
 
 1. ````git clone https://github.com/bytePro17124/D34DL1NE_Task_Priority/````
@@ -26,10 +37,10 @@ _A prioritization program for the unorganized_
     * Qt
     * Electron
     * SDL2
-    * Terminal : By a programmer for a programmer
+    * Command Line Interface (current)
     * Other Options
 
-2. Task Breakdown Feature (idea mainly credited to @ebitikofer)
+2. Task Breakdown Feature (idea mainly credited to @ebitikofer) (not implemented yet)
 	* creates subtasks with default name section/chapter/whatever
 	* user determines subtask size
 		* even divides or custom
@@ -37,17 +48,16 @@ _A prioritization program for the unorganized_
 	* great for big tasks way in the future
 
 3. Working Conept
-	* Terminal Version in the works
+	* Terminal Version in the works (working, alpha)
 	* Build a flowchart structure.
-	* Load/Save Tasks from file
-	* Add/Remove Tasks features
+	* Load/Save Tasks from file (working, alpha)
+	* Add/Remove Tasks features (working, alpha)
 	* Clean Feature
-	* Proper Date Comparison Checks
+	* Proper Date Comparison Checks (working, alpha)
 	* Logs & Reports
 
 4. Interface Clarity
-	* First, make it work
-	* Clean up / make clearer later
+	* Clean up / make clearer
 	* Live Clock Ticker
 	* Build Terminal Graphic Library (@ebitikofer)
-	* Time Left
+	* Show Time Left
