@@ -41,12 +41,12 @@ _This program will show at the top the next task that is due, the one you **shou
 	    * great for big tasks due way in the future
 
 3. Working Conept
-	* Terminal Version in the works (working, alpha)
+	* Terminal Version in the works (working, prealpha)
 	* Build a flowchart structure.
-	* Load/Save Tasks from file (working, alpha)
-	* Add/Remove Tasks features (working, alpha)
+	* Load/Save Tasks from file (working, prealpha)
+	* Add/Remove Tasks features (working, prealpha)
 	* Clean Feature
-	* Proper Date Comparison Checks (working, alpha)
+	* Proper Date Comparison Checks (working, prealpha)
 	* Logs & Reports
 
 4. Interface Clarity
