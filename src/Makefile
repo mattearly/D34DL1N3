@@ -6,7 +6,7 @@ TARGET = dtpriority
 OBJS = runtasks.o main.o runtasks_save_load.o
 CC = g++
 CCFLAGS = -std=c++11 -Wall -g -O
-DEL = rm
+DEL = -rm
 .PHONY: new clean
 
 

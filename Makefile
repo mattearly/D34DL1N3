@@ -9,12 +9,11 @@
 #      -Removes all previously built files
 
 TARGET = dtpriority
-DEL = rm
+DEL = -rm
 .PHONY: new clean
 
 all:
 	+$(MAKE) -C src
-	@echo D34DLine Task Priority build finished. Run with './dtpriority'
 
 new:
 	+$(MAKE) -C ./ clean
@@ -27,5 +26,9 @@ run:
 clean:
 	$(DEL) $(TARGET)
 	+$(MAKE) -C src $@
+
+install:
+	-mkdir /home/mje/.dtpriority
+	sudo mv dtpriority /usr/bin
 
 
