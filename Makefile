@@ -12,7 +12,7 @@
 
 TARGET = dtpriority
 DEL = -rm
-.PHONY: new clean
+.PHONY: all new clean install
 
 all:
 	+$(MAKE) -C src
@@ -20,10 +20,6 @@ all:
 new:
 	+$(MAKE) -C ./ clean
 	+$(MAKE) -C ./
-
-run:
-	+$(MAKE) -C src
-	./$(TARGET)
 
 clean:
 	$(DEL) $(TARGET)
