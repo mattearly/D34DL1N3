@@ -23,16 +23,8 @@ _This program will show at the top the next task that is due, the one you **shou
 2. ````cd D34DL1NE_Task_Priority````
 3. ````make run````
 
-### ToDo List (in no particular order) (revise frequently)
-1. Which graphic libraries to use?
-    * SFML
-    * Qt
-    * Electron
-    * SDL2
-    * Command Line Interface (current)
-    * Other Options
-
-2. Additional Useful Functions
+### ToDo List / Idea List (in no particular order) (revise frequently)
+1. Additional Useful Functions
     * Task Breakdown Feature (idea mainly credited to @ebitikofer) (not implemented yet)
 	    * creates subtasks with default name section/chapter/whatever
 	    * user determines subtask size
@@ -40,7 +32,7 @@ _This program will show at the top the next task that is due, the one you **shou
 	    * resplit based on what is left at any point
 	    * great for big tasks due way in the future
 
-3. Working Conept
+2. Working Conept
 	* Terminal Version in the works (working, prealpha)
 	* Build a flowchart structure.
 	* Load/Save Tasks from file (working, prealpha)
@@ -48,8 +40,9 @@ _This program will show at the top the next task that is due, the one you **shou
 	* Clean Feature
 	* Proper Date Comparison Checks (working, prealpha)
 	* Logs & Reports
+	* Make the program Installable on Linux
 
-4. Interface Clarity
+3. Interface Clarity
 	* Clean up / make clearer
 	* Live Clock Ticker
 	* Build Terminal Graphic Library (@ebitikofer)
