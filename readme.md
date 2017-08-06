@@ -21,9 +21,18 @@ _This program will show at the top the next task that is due, the one you **shou
 
 1. ````git clone https://github.com/bytePro17124/D34DL1NE_Task_Priority/````
 2. ````cd D34DL1NE_Task_Priority````
-3. ````make run````
+3. ````make````
+4. ````make install```` (run this with sudo if permission is denied)
+
+You can now run the program from your terminal using ````dtpriority````
+
+### Uninstall (2 options from the same makefile used to install)
+
+* ````make uninstall```` removes the program
+* ````make purge```` removes the program and all saved data
 
 ### ToDo List / Idea List (in no particular order) (revise frequently)
+
 1. Additional Useful Functions
     * Task Breakdown Feature (idea mainly credited to @ebitikofer) (not implemented yet)
 	    * creates subtasks with default name section/chapter/whatever

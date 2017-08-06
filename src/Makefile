@@ -7,7 +7,7 @@ OBJS = runtasks.o main.o runtasks_save_load.o
 CC = g++
 CCFLAGS = -std=c++11 -Wall -g -O
 DEL = -rm
-.PHONY: new clean
+.PHONY: clean
 
 
 $(TARGET): $(OBJS)
@@ -19,7 +19,6 @@ clean:
 
 
 .cpp.o:
-	@echo BUILDING: $< -into- $@
 	$(CC) -c $< $(CCFLAGS)
 
 

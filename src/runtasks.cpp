@@ -2,14 +2,14 @@
 #include "helper.h"
 #include <iomanip>
 #include <iostream>
-#include <unistd.h>
-
+#include <stdlib.h>
 
 using namespace std;
 
 RunTasks::RunTasks() {  //set local system time at initial run
 	now = time(0);
 	ltm = localtime(&now);
+	user_dir = getenv("HOME");
 	loadTasklist("testsave1");
 }
 
@@ -63,11 +63,11 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 	cout << endl;
 	cout << latestMessage
 		 << "_____________Main Menu_____________\n"  << left
-		 << setw(16) << "1. Add Task"      << " | " << "6. " << endl
-		 << setw(16) << "2. Remove Task"   << " | " << "7. " << endl
-		 << setw(16) << "3. See Tasks"     << " | " << "8. " << endl
-		 << setw(16) << "4. "              << " | " << "9. Save State" << endl
-		 << setw(16) << "5. "              << " | " << "0. Quit Program" << endl;
+		 << setw(16) << "1. Add Task"      << " | " << "6. [placeholder]" << endl
+		 << setw(16) << "2. Remove Task"   << " | " << "7. [placeholder]" << endl
+		 << setw(16) << "3. See Tasks"     << " | " << "8. [placeholder]" << endl
+		 << setw(16) << "4. [placeholder]" << " | " << "9. Save State" << endl
+		 << setw(16) << "5. [placeholder]" << " | " << "0. Quit Program" << endl;
 	return (getNumber("\n   Choice:  ", __minmax.first, __minmax.second));
 }
 

@@ -38,6 +38,8 @@ private:
 
 	void removeTask(void);  //built in runtasks.cpp
 
+	const char *user_dir;
+
 	void loadTasklist(const std::string filename);  //built in runtasks_save_load.cpp
 
 	void saveTasklist(const std::string filename);  //built in runtasks_save_load.cpp

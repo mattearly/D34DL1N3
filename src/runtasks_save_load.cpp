@@ -6,7 +6,8 @@ using namespace std;
 
 void RunTasks::saveTasklist(const string filename){
 	//open specified file
-	ofstream out(("/home/mje/.dtpriority/" + filename).c_str());
+	std::string home(user_dir);
+	ofstream out((home + "/.dtpriority/" + filename).c_str());
 	if (!out) {
 		cout << "Could not open " << filename << ". Check code or file.\n\n";
 		return;
@@ -27,7 +28,8 @@ void RunTasks::saveTasklist(const string filename){
 
 void RunTasks::loadTasklist(const string filename){
 	//open specified file
-	ifstream in("/home/mje/.dtpriority/" + filename);
+	std::string home(user_dir);
+	ifstream in(home + "/.dtpriority/" + filename);
 	if (!in) {
 		cout << "Error opening " << filename << ". Check code or file.\n\n";
 		return;

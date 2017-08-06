@@ -9,10 +9,14 @@
 #      -Removes all previously built files
 #  5. make install
 #      -installs the program and it's required directory for saving
+#  6. make uninstall
+#      -removes the program
+#  7. make purge
+#      -removes the program and any saved data
 
 TARGET = dtpriority
 DEL = -rm
-.PHONY: all new clean install
+.PHONY: all new clean install uninstall
 
 all:
 	+$(MAKE) -C src
@@ -26,7 +30,14 @@ clean:
 	+$(MAKE) -C src $@
 
 install:
-	-mkdir $(HOME)/.dtpriority
-	install $(TARGET) /usr/local/bin/
+	-mkdir -p $(HOME)/.dtpriority
+	install -m 755 $(TARGET) /usr/local/bin/
+
+uninstall:
+	-rm /usr/local/bin/$(TARGET)
+
+purge:
+	-rm -rf $(HOME)/.dtpriority
+	-rm /usr/local/bin/$(TARGET)
 
 
