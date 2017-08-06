@@ -7,6 +7,8 @@
 #      -Builds any needed files and runs the program right away
 #  4. make clean
 #      -Removes all previously built files
+#  5. make install
+#      -installs the program and it's required directory for saving
 
 TARGET = dtpriority
 DEL = -rm
@@ -28,7 +30,7 @@ clean:
 	+$(MAKE) -C src $@
 
 install:
-	-mkdir /home/mje/.dtpriority
-	sudo mv dtpriority /usr/bin
+	-mkdir $(HOME)/.dtpriority
+	install $(TARGET) /usr/local/bin/
 
 
