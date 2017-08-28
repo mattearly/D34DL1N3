@@ -142,8 +142,8 @@ void RunTasks::viewHighestPriorityTask() {
 	if (allTasks.size() < 1) {
 		cout << "No Tasks on list.\n";
 		return;
-	} else if (allTasks.size() == 1) {
-		cout << "__________Priority Task__________\n" << allTasks[0].getName()
+	} else if (allTasks.size() == 1) {		
+		cout << "___________Priority Task___________\n" << allTasks[0].getName()
 			 << "\n  Due: " << allTasks[0].getMonth() << "/"
 			 << allTasks[0].getDay() << "/" << allTasks[0].getYear()
 			 << " @ ";

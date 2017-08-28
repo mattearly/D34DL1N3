@@ -1,4 +1,4 @@
-# D34DLINE Task Priority
+# D34DL1NE Task Priority
 
 <img src="res/cli_screenshot_mm.png" height="144px" align="right">
 
@@ -6,16 +6,18 @@ _A prioritization program for the unorganized_
 
 ### The Project
 
-1. Build a user-friendly UI and system in a lightweight program that will allow a user to:
-	* Feed in tasks, homework, or anything a hard "Deadline" date.
-	* Based on this data, the program will display the most urgent task that needs completed
+1. The goal is to build a user-friendly lightweight program that will allow a user to:
+	* Feed in tasks, homework, or anything a hard 'Deadline' date.
+	* Based on this data, the program will display the most **urgent** task that needs completed.
+	    * Focus on this top task until it is complete.
+	    * Keep adding in new tasks along with their deadline as they come up.
+	* That is it.
 
-### Basic Idea and Use
+### Basic Use
 
-_This program will show at the top the next task that is due, the one you **should** be working on_
+_This Main Menu will show the next task that is due, the one you **should** be working on_
 
-1. Add tasks along with their hard due date
-2. Remove them when they are complete
+* Add/Remove tasks as assigned/completed.
 
 ### Install (linux command line)
 
@@ -35,24 +37,24 @@ You can now run the program from your terminal using ````dtpriority````
 
 1. Additional Useful Functions
     * Task Breakdown Feature (idea mainly credited to @ebitikofer) (not implemented yet)
-	    * creates subtasks with default name section/chapter/whatever
+	    * creates subtasks with default names (section/chapter/anything)
 	    * user determines subtask size
 		    * even divides or custom
 	    * resplit based on what is left at any point
 	    * great for big tasks due way in the future
 
-2. Working Conept
+2. Working Concept
 	* Terminal Version in the works (working, prealpha)
-	* Build a flowchart structure.
 	* Load/Save Tasks from file (working, prealpha)
 	* Add/Remove Tasks features (working, prealpha)
-	* Clean Feature
 	* Proper Date Comparison Checks (working, prealpha)
-	* Logs & Reports
-	* Make the program Installable on Linux
+	* Make the program Installable on Linux (working, prealpha)
+    * Build a flowchart structure
+    * Clean Feature - prompts to all remove out of date tasks one by one or all at once
+    * Logs & Reports
 
 3. Interface Clarity
 	* Clean up / make clearer
-	* Live Clock Ticker
-	* Build Terminal Graphic Library (@ebitikofer)
-	* Show Time Left
+	* Live Clock Ticker - sort of work, updates anytime the program changes
+	* Build Terminal Graphic Library - might not do this and just use standard cli
+	* Show Time Left on a task
