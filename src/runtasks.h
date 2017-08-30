@@ -6,9 +6,15 @@
 #include <vector>
 #include <ctime>
 
+class Task;
+
+class Date;
+
 class RunTasks {
 
 public:
+
+	friend bool operator< (const Task& T1, const Task& T2);
 
 	RunTasks();  //built in runtasks.cpp
 

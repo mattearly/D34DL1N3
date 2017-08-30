@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <stdlib.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -32,6 +33,8 @@ void RunTasks::exec() {
 			viewAllTasks();
 			break;
 		case 4:
+			sort(allTasks.begin(), allTasks.end());
+			viewAllTasks();
 			break;
 		case 5:
 			break;
@@ -66,7 +69,7 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 		 << setw(16) << "1. Add Task"      << " | " << "6. [placeholder]" << endl
 		 << setw(16) << "2. Remove Task"   << " | " << "7. [placeholder]" << endl
 		 << setw(16) << "3. See Tasks"     << " | " << "8. [placeholder]" << endl
-		 << setw(16) << "4. [placeholder]" << " | " << "9. Save State" << endl
+		 << setw(16) << "4. Sort Tasks   " << " | " << "9. Save State" << endl
 		 << setw(16) << "5. [placeholder]" << " | " << "0. Quit Program" << endl;
 	return (getNumber("\n   Choice:  ", __minmax.first, __minmax.second));
 }
@@ -231,6 +234,8 @@ void RunTasks::removeTask() {
 }
 
 
+
+//date version - todo: -- use new 'Task' version below
 bool operator< (const Date& lhs, const Date& rhs) {
 	if (lhs.year <= rhs.year) {
 		if (lhs.year < rhs.year) {
@@ -258,6 +263,36 @@ bool operator< (const Date& lhs, const Date& rhs) {
 		}
 	}
 	return false;  //rhs is less or lhs == rhs
+}
+
+// task version
+bool operator< (const Task& T1, const Task& T2) {
+	if (T1.getYear() <= T2.getYear()) {
+		if (T1.getYear() < T2.getYear()) {
+			return false;  //year of left hand side is less
+		} else {  //years are equal, check month
+			if (T1.getMonth() <= T2.getMonth()) {
+				if (T1.getMonth() < T2.getMonth()) {
+					return false;  //month of left hand side is less
+				} else if (T1.getDay() <= T2.getDay()) {  //months are equal check day
+					if (T1.getDay() < T2.getDay()) {
+						return false;  //left hand side day is sooner
+					} else { //days are equal, check hours
+						if (T1.getHour() <= T2.getHour()) {
+							if (T1.getHour() < T2.getHour()) {
+								return false;  //lhs is sooner
+							} else {  //hours are the same, check minutes
+								if (T1.getMinute() <= T2.getMinute()) {
+									return false;  //lhs is sooner
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return true;  //rhs is less or lhs == rhs
 }
 
 
