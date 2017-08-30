@@ -118,7 +118,8 @@ void RunTasks::createNewTask(vector<Task> &inctasks) {
 
 
 void RunTasks::viewAllTasks() {
-	cout << endl;
+	clearTerminalScreen();
+	cout << "Here are all the tasks on your list : \n\n";
 	if (allTasks.size() < 1) {
 		cout << "No Tasks on list.";
 		pressEnterToContinue();
