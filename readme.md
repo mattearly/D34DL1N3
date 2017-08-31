@@ -1,6 +1,6 @@
 # D34DL1NE Task Priority
 
-<img src="res/cli_screenshot_mm.png" height="144px" align="right">
+<img src="res/cli_screenshot_mm.png" height="325px" align="right">
 
 _A prioritization program for the unorganized_
 
