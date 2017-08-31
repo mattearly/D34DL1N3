@@ -7,17 +7,15 @@ _A prioritization program for the unorganized_
 ### The Project
 
 1. The goal is to build a user-friendly lightweight program that will allow a user to:
-	* Feed in tasks, homework, or anything a hard 'Deadline' date.
+	* Feed in Deadlines. Tasks, homework, or anything.
 	* Based on this data, the program will display the most **urgent** task that needs completed.
-	    * Focus on this top task until it is complete.
-	    * Keep adding in new tasks along with their deadline as they come up.
-	* That is it.
 
 ### Basic Use
 
-_This Main Menu will show the next task that is due, the one you **should** be working on_
+_This Main Menu will show the next task that is due, the one you **should** be working on. When it doubt, look at this top task and get to work. Stay Focused!_
 
-* Add/Remove tasks as assigned/completed.
+* Keep adding in new tasks along with their deadline as they come up.
+* Remove tasks as completed.
 
 ### Install (linux command line)
 
@@ -25,15 +23,14 @@ _This Main Menu will show the next task that is due, the one you **should** be w
 2. ````cd D34DL1NE_Task_Priority````
 3. ````make````
 4. ````make install```` (run this with sudo if permission is denied)
-
-You can now run the program from your terminal using ````dtpriority````
+5. you can now run the program at any time in your terminal window by typing in ````dtpriority````
 
 ### Uninstall (2 options from the same makefile used to install)
 
 * ````make uninstall```` removes the program
 * ````make purge```` removes the program and all saved data
 
-### ToDo List / Idea List (in no particular order) (revise frequently)
+### ToDo List / Idea List (in no particular order) (revise frequently) / Feel free to work on this
 
 1. Additional Useful Functions
     * Task Breakdown Feature (idea mainly credited to @ebitikofer) (not implemented yet)
