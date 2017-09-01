@@ -269,21 +269,21 @@ bool operator< (const Date& lhs, const Date& rhs) {
 bool operator< (const Task& T1, const Task& T2) {
 	if (T1.getYear() <= T2.getYear()) {
 		if (T1.getYear() < T2.getYear()) {
-			return false;  //year of left hand side is less
+                        return true;  //year of left hand side is less
 		} else {  //years are equal, check month
 			if (T1.getMonth() <= T2.getMonth()) {
 				if (T1.getMonth() < T2.getMonth()) {
-					return false;  //month of left hand side is less
+                                        return true;  //month of left hand side is less
 				} else if (T1.getDay() <= T2.getDay()) {  //months are equal check day
 					if (T1.getDay() < T2.getDay()) {
-						return false;  //left hand side day is sooner
+                                                return true;  //left hand side day is sooner
 					} else { //days are equal, check hours
 						if (T1.getHour() <= T2.getHour()) {
 							if (T1.getHour() < T2.getHour()) {
-								return false;  //lhs is sooner
+                                                                return true;  //lhs is sooner
 							} else {  //hours are the same, check minutes
 								if (T1.getMinute() <= T2.getMinute()) {
-									return false;  //lhs is sooner
+                                                                        return true;  //lhs is sooner
 								}
 							}
 						}
@@ -292,7 +292,7 @@ bool operator< (const Task& T1, const Task& T2) {
 			}
 		}
 	}
-	return true;  //rhs is less or lhs == rhs
+        return false;  //rhs is less or lhs == rhs
 }
 
 
