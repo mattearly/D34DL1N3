@@ -13,9 +13,9 @@ RunTasks::RunTasks() {  //set local system time at initial run
 	user_dir = getenv("HOME");
 	std::cout << "user_dir = " << user_dir << "\n";
 	if (loadTasklist("testsave1")) {
-		latestMessage.insert(0, "Loaded User Save File Successfully!");
+		latestMessage.insert(0, "Loaded saved file!");
 	} else {
-		latestMessage.insert(0, "Error - Failed to Load User Save File");
+		latestMessage.insert(0, "No file to load from (yet)!");
 	}
 }
 
@@ -24,12 +24,12 @@ void RunTasks::exec() {
 	pair<int, int> choice_minmax(0,9);
 	do {
 		choice = menu(choice_minmax);
-		latestMessage = "\n";
+		latestMessage = "";
 
 		switch (choice) {
 		case 1:
 			createNewTask();
-			latestMessage.insert(0, "New Task Created!");
+			latestMessage.insert(0, "New task created!");
 			break;
 		case 2:
 			removeTask();
@@ -51,9 +51,11 @@ void RunTasks::exec() {
 			break;
 		case 9:
 			if (saveTasklist("testsave1")) {
-				latestMessage.insert(0, "State Saved!");
+				latestMessage.insert(0, "Task state saved!");
+			} else if (allTasks.size() < 1) {
+				latestMessage.insert(0, "No tasks on list!");
 			} else {
-				latestMessage.insert(0, "Error - Unable to Save");
+				latestMessage.insert(0, "Unable to save!");
 			}
 			break;
 		case 0:
@@ -73,7 +75,7 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 	cout << endl;
 	printCurrentTime();
 	cout << endl;
-	cout << latestMessage << "\n\n"
+	cout << "Status: " << latestMessage << "\n\n"
 		 << "_____________Main Menu_____________\n"  << left
 		 << setw(16) << "1. Add Task"      << " | " << "6. " << endl
 		 << setw(16) << "2. Remove Task"   << " | " << "7. " << endl
@@ -106,12 +108,15 @@ void RunTasks::createNewTask() {
 	tmpyear = getNumber(1900 + ltm->tm_year, 9999);
 
 	cout << "\nEnter month: ";
-	if (tmpyear == 1900 + ltm->tm_year) tmpmonth = getNumber(1 + ltm->tm_mon,12);
-	else tmpmonth = getNumber(1, 12);
+	if (tmpyear == 1900 + ltm->tm_year) tmpmonth = getNumber(1 + ltm->tm_mon,12);  //limit this year to the months still left
+	else tmpmonth = getNumber(1, 12);  //otherwise future years any month is fine
 
 	cout << "\nEnter day: ";
-	tmpday = getNumber(1,31);
-
+	if (tmpyear == 1900 + ltm->tm_year && tmpmonth == 1 + ltm->tm_mon) {
+		tmpday = getNumber(ltm->tm_mday, 31);  //limit to the number of days left in the month if task is this month
+	} else {
+		tmpday = getNumber(1,31);  //otherwise accept any date (always goes to 31, which needs fixed and set based on days in month)
+	}
 	cout << "\nEnter Hour (24h format): ";
 	tmphour = getNumber(0, 23);
 
