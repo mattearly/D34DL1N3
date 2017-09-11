@@ -30,7 +30,8 @@ clean:
 	+$(MAKE) -C src $@
 
 install:
-	-mkdir -p $(HOME)/.dtpriority
+	-mkdir -p $(HOME)/.$(TARGET)
+	chmod 777 -R $(HOME)/.$(TARGET)
 	install -m 755 $(TARGET) /usr/local/bin/
 
 uninstall:
