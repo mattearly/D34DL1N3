@@ -1,18 +1,16 @@
 # D34DL1NE Task Priority
 
-<img src="res/cli_screenshot_mm.png" height="325px" align="right">
+<img src="res/Screenshot - 09112017 - 04:18:19 PM.png" height="248px" align="right">
 
 _A prioritization program for the unorganized_
 
 ### The Project
 
-1. The goal is to build a user-friendly lightweight program that will allow a user to:
-	* Feed in Deadlines. Tasks, homework, or anything.
-	* Based on this data, the program will display the most **urgent** task that needs completed.
+1. The goal is to build a user-friendly lightweight program that will allow a user to feed in Deadlines. Tasks, homework, or anything.
 
 ### Basic Use
 
-_This Main Menu will show the next task that is due, the one you **should** be working on. When it doubt, look at this top task and get to work. Stay Focused!_
+_The Main Menu will show the next task that is due, the one you **should** be working on. When it doubt, look at this top task and get to work. Stay Focused!_
 
 * Keep adding in new tasks along with their deadline as they come up.
 * Remove tasks as completed.
@@ -22,7 +20,7 @@ _This Main Menu will show the next task that is due, the one you **should** be w
 1. ````git clone https://github.com/bytePro17124/D34DL1NE_Task_Priority/````
 2. ````cd D34DL1NE_Task_Priority````
 3. ````make````
-4. ````make install```` (run this with sudo if permission is denied)
+4. ````sudo make install```` (must have sudo unless you already rooted yourself)
 5. you can now run the program at any time in your terminal window by typing in ````dtpriority````
 
 ### Uninstall (2 options from the same makefile used to install)
