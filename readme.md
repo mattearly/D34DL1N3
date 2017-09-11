@@ -36,7 +36,9 @@ _The Main Menu will show the next task that is due, the one you **should** be wo
 	    * user determines subtask size
 		    * even divides or custom
 	    * resplit based on what is left at any point
-	    * great for big tasks due way in the future
+	    * great for **big** tasks due way in the future
+	* Autosave at certain time intervals
+	    * separate file that is used upon load if it is newer than the manual save file
 
 2. Working Concept
 	* Terminal Version in the works (working, prealpha)
@@ -47,9 +49,11 @@ _The Main Menu will show the next task that is due, the one you **should** be wo
     * Build a flowchart structure
     * Clean Feature - prompts to all remove out of date tasks one by one or all at once
     * Logs & Reports
+        * Past Data from completed tasks
+            * could save time on list(entry time - remove time), when completed(removed), and other statistics 
 
 3. Interface Clarity
 	* Clean up / make clearer
 	* Live Clock Ticker - sort of work, updates anytime the program changes
-	* Build Terminal Graphic Library - might not do this and just use standard cli
+	* Build Terminal Graphic Library (scrapped, using cli) 
 	* Show Time Left on a task
