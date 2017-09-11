@@ -46,9 +46,9 @@ private:
 
 	const char *user_dir;
 
-	void loadTasklist(const std::string filename);  //built in runtasks_save_load.cpp
+	bool loadTasklist(const std::string filename);  //built in runtasks_save_load.cpp
 
-	void saveTasklist(const std::string filename);  //built in runtasks_save_load.cpp
+	bool saveTasklist(const std::string filename);  //built in runtasks_save_load.cpp
 
 	//To build...
 	//

@@ -4,35 +4,36 @@
 #include <limits>
 using namespace std;
 
-void RunTasks::saveTasklist(const string filename){
+bool RunTasks::saveTasklist(const string filename){
 	//open specified file
 	std::string home(user_dir);
 	ofstream out((home + "/.dtpriority/" + filename).c_str());
 	if (!out) {
-		cout << "Could not open " << filename << ". Check code or file.\n\n";
-		return;
+		cout << "Could not save " << filename << ". Check code or file.\n\n";
+		return false;
 	} else {
 		if (allTasks.size() < 1) {
 			cout << "No Tasks on list(nothing to save).";
-			return;
+			return false;
 		}
 		for (auto & it : allTasks) {  //output to file in 2 lines, name then date+time
 			out << it.getName() << "\n"
-				 << it.getMonth() << " " << it.getDay() << " " << it.getYear()
-				 << " " << it.getHour() << " " << it.getMinute()
-				 << "\n";
+				<< it.getMonth() << " " << it.getDay() << " " << it.getYear()
+				<< " " << it.getHour() << " " << it.getMinute()
+				<< "\n";
 		}
 		out.close();
 	}
+	return true;
 }
 
-void RunTasks::loadTasklist(const string filename){
+bool RunTasks::loadTasklist(const string filename){
 	//open specified file
 	std::string home(user_dir);
 	ifstream in(home + "/.dtpriority/" + filename);
 	if (!in) {
 		cout << "Error opening " << filename << ". Check code or file.\n\n";
-		return;
+		return false;
 	} else {
 		string tmpname;
 		int tmpmonth, tmpday, tmpyear, tmphour, tmpmin;
@@ -44,4 +45,5 @@ void RunTasks::loadTasklist(const string filename){
 			in.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
 	}
+	return true;
 }

@@ -11,7 +11,12 @@ RunTasks::RunTasks() {  //set local system time at initial run
 	now = time(0);
 	ltm = localtime(&now);
 	user_dir = getenv("HOME");
-	loadTasklist("testsave1");
+	std::cout << "user_dir = " << user_dir << "\n";
+	if (loadTasklist("testsave1")) {
+		latestMessage.insert(0, "Loaded User Save File Successfully!");
+	} else {
+		latestMessage.insert(0, "Error - Failed to Load User Save File");
+	}
 }
 
 void RunTasks::exec() {
@@ -45,8 +50,12 @@ void RunTasks::exec() {
 		case 8:
 			break;
 		case 9:
-			saveTasklist("testsave1");
-			latestMessage.insert(0, "State Saved!");
+			if (saveTasklist("testsave1")) {
+				latestMessage.insert(0, "State Saved!");
+			} else {
+				latestMessage.insert(0, "Error - Unable to Save");
+			}
+			break;
 		case 0:
 			cout << "\n\nGoodBye\n";
 			break;
@@ -64,13 +73,13 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 	cout << endl;
 	printCurrentTime();
 	cout << endl;
-	cout << latestMessage
+	cout << latestMessage << "\n\n"
 		 << "_____________Main Menu_____________\n"  << left
-		 << setw(16) << "1. Add Task"      << " | " << "6. [placeholder]" << endl
-		 << setw(16) << "2. Remove Task"   << " | " << "7. [placeholder]" << endl
-		 << setw(16) << "3. See Tasks"     << " | " << "8. [placeholder]" << endl
+		 << setw(16) << "1. Add Task"      << " | " << "6. " << endl
+		 << setw(16) << "2. Remove Task"   << " | " << "7. " << endl
+		 << setw(16) << "3. See Tasks"     << " | " << "8. " << endl
 		 << setw(16) << "4. Sort Tasks   " << " | " << "9. Save State" << endl
-		 << setw(16) << "5. [placeholder]" << " | " << "0. Quit Program" << endl;
+		 << setw(16) << "5. " << " | " << "0. Quit Program" << endl;
 	return (getNumber("\n   Choice:  ", __minmax.first, __minmax.second));
 }
 
@@ -146,7 +155,7 @@ void RunTasks::viewHighestPriorityTask() {
 	if (allTasks.size() < 1) {
 		cout << "No Tasks on list.\n";
 		return;
-	} else if (allTasks.size() == 1) {		
+	} else if (allTasks.size() == 1) {
 		cout << "___________Priority Task___________\n" << allTasks[0].getName()
 			 << "\n  Due: " << allTasks[0].getMonth() << "/"
 			 << allTasks[0].getDay() << "/" << allTasks[0].getYear()
@@ -269,21 +278,21 @@ bool operator< (const Date& lhs, const Date& rhs) {
 bool operator< (const Task& T1, const Task& T2) {
 	if (T1.getYear() <= T2.getYear()) {
 		if (T1.getYear() < T2.getYear()) {
-                        return true;  //year of left hand side is less
+			return true;  //year of left hand side is less
 		} else {  //years are equal, check month
 			if (T1.getMonth() <= T2.getMonth()) {
 				if (T1.getMonth() < T2.getMonth()) {
-                                        return true;  //month of left hand side is less
+					return true;  //month of left hand side is less
 				} else if (T1.getDay() <= T2.getDay()) {  //months are equal check day
 					if (T1.getDay() < T2.getDay()) {
-                                                return true;  //left hand side day is sooner
+						return true;  //left hand side day is sooner
 					} else { //days are equal, check hours
 						if (T1.getHour() <= T2.getHour()) {
 							if (T1.getHour() < T2.getHour()) {
-                                                                return true;  //lhs is sooner
+								return true;  //lhs is sooner
 							} else {  //hours are the same, check minutes
 								if (T1.getMinute() <= T2.getMinute()) {
-                                                                        return true;  //lhs is sooner
+									return true;  //lhs is sooner
 								}
 							}
 						}
@@ -292,7 +301,7 @@ bool operator< (const Task& T1, const Task& T2) {
 			}
 		}
 	}
-        return false;  //rhs is less or lhs == rhs
+	return false;  //rhs is less or lhs == rhs
 }
 
 
