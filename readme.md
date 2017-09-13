@@ -31,14 +31,19 @@ _The Main Menu will show the next task that is due, the one you **should** be wo
 ### ToDo List / Idea List (in no particular order) (revise frequently) / Feel free to work on this
 
 1. Additional Useful Functions
-    * Task Breakdown Feature (idea mainly credited to @ebitikofer) (not implemented yet)
+    1. Add Task Breakdown Feature (idea mainly credited to @ebitikofer) (not implemented yet)
 	    * creates subtasks with default names (section/chapter/anything)
 	    * user determines subtask size
 		    * even divides or custom
 	    * resplit based on what is left at any point
 	    * great for **big** tasks due way in the future
-	* Autosave at certain time intervals
+	2. Add Autosave at certain time intervals
 	    * separate file that is used upon load if it is newer than the manual save file
+	3. Add command line options that don't fully run the program
+	    * option to add/remove tasks
+	    * option to revise tasks
+	        * these first 2 do the thing then save the file, and give the end user a success or failure message
+	    * option to see Top Tasks (or any or all)
 
 2. Working Concept
 	* Terminal Version in the works (working, prealpha)
