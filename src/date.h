@@ -19,9 +19,12 @@ public:
 	~Date(){}
 
 	//mutators
-	void set_month(int mm);
-	void set_day(int dd);
-	void set_year(int yyyy);
+	//Valid clamping assumed to be done by input module
+	void set_month(int mm) { month = mm; }
+	void set_day(int dd) { day = dd; }
+	void set_year(int yyyy) { year = yyyy; }
+	void set_hour(int hh) { hour = hh; }
+	void set_minute(int mi) { minute = mi; }
 
 	//accessors
 	int getMonth(void) const { return month; }

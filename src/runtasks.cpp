@@ -24,31 +24,35 @@ void RunTasks::exec() {
 	pair<int, int> choice_minmax(0,9);
 	do {
 		choice = menu(choice_minmax);
-		latestMessage = "";
-
+		if (latestMessage.size() < 1) {
+			latestMessage = "Don't Forget To Save!";
+		} else {
+			latestMessage.clear();
+		}
 		switch (choice) {
 		case 1:
 			createNewTask();
 			latestMessage.insert(0, "New task created!");
-			break;
+		break;
 		case 2:
 			removeTask();
-			break;
+		break;
 		case 3:
 			viewAllTasks();
-			break;
+		break;
 		case 4:
 			sort(allTasks.begin(), allTasks.end());
-			viewAllTasks();
-			break;
+			latestMessage.insert(0, "Tasks Sorted!");
+		break;
 		case 5:
-			break;
+			editTask();
+		break;
 		case 6:
-			break;
+		break;
 		case 7:
-			break;
+		break;
 		case 8:
-			break;
+		break;
 		case 9:
 			if (saveTasklist("testsave1")) {
 				latestMessage.insert(0, "Task state saved!");
@@ -57,13 +61,13 @@ void RunTasks::exec() {
 			} else {
 				latestMessage.insert(0, "Unable to save!");
 			}
-			break;
+		break;
 		case 0:
 			cout << "\n\nGoodBye\n";
-			break;
+		break;
 		default:
 			cout << "\nInvalid Choice\n";
-			break;
+		break;
 		}
 	} while (choice != 0);
 }
@@ -74,14 +78,13 @@ int RunTasks::menu(pair<int, int>& __minmax) {
 	viewHighestPriorityTask();
 	cout << endl;
 	printCurrentTime();
-	cout << endl;
-	cout << "Status: " << latestMessage << "\n\n"
+	cout << "\n ->" << latestMessage << "\n\n"
 		 << "_____________Main Menu_____________\n"  << left
 		 << setw(16) << "1. Add Task"      << " | " << "6. " << endl
 		 << setw(16) << "2. Remove Task"   << " | " << "7. " << endl
 		 << setw(16) << "3. See Tasks"     << " | " << "8. " << endl
 		 << setw(16) << "4. Sort Tasks   " << " | " << "9. Save State" << endl
-		 << setw(16) << "5. " << " | " << "0. Quit Program" << endl;
+		 << setw(16) << "5. Edit A Task"   << " | " << "0. Quit Program" << endl;
 	return (getNumber("\n   Choice:  ", __minmax.first, __minmax.second));
 }
 
@@ -161,7 +164,7 @@ void RunTasks::viewHighestPriorityTask() {
 		cout << "No Tasks on list.\n";
 		return;
 	} else if (allTasks.size() == 1) {
-		cout << "___________Priority Task___________\n" << allTasks[0].getName()
+		cout << "___________Priority Task___________\n\n" << allTasks[0].getName()
 			 << "\n  Due: " << allTasks[0].getMonth() << "/"
 			 << allTasks[0].getDay() << "/" << allTasks[0].getYear()
 			 << " @ ";
@@ -181,7 +184,7 @@ void RunTasks::viewHighestPriorityTask() {
 				highestpri = i+1;
 			}
 		}
-		cout << "___________Priority Task___________\n1. "
+		cout << "___________Priority Task___________\n\n1. "
 			 << allTasks[highestpri].getName()
 			 << "\n   Due: " << allTasks[highestpri].getMonth() << "/"
 			 << allTasks[highestpri].getDay()
@@ -201,13 +204,13 @@ void RunTasks::printCurrentTime() {
 	now = time(0);
 	tm *ltm = localtime(&now);
 	// print time to screen
-	cout << "___________Current Time____________\n";
+	cout << "___________Current Time____________\n\n";
 	// print local time
 	int hour = ltm->tm_hour;
 	string AM_PM = "AM";
 	if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
 	cout << std::setfill('0');
-	cout << "   ";
+	cout << "     ";
 	cout << setw(2) << right << hour << ":"
 		 << setw(2) << right << ltm->tm_min
 		 << AM_PM << "  ";
@@ -244,6 +247,95 @@ void RunTasks::removeTask() {
 	_choice = getNumber(1, _count);
 	allTasks.erase(allTasks.begin() - 1 + _choice);
 	cout << "\nRemoval complete\n";
+	pressEnterToContinue();
+}
+
+void RunTasks::editTask() {
+	clearTerminalScreen();
+	if (allTasks.size() < 1) {
+		cout << "No Tasks on list.";
+		pressEnterToContinue();
+		return;
+	}
+	int _count(0);
+	int _choice(0), _choice2(0);
+	cout << "All your Tasks:";
+	for (auto & it : allTasks) {
+		_count++;
+		cout << "\n" << _count << ". "
+			 << it.getName() << "\n    Due: "
+			 << it.getMonth() << "/" << it.getDay() << "/" << it.getYear()
+			 << " @ "
+			 << setw(2) << std::setfill('0') << right << it.getHour()
+			 << ":"
+			 << setw(2) << std::setfill('0') << right << it.getMinute()
+			 << endl;
+	}
+	cout << "\nWhich would you like to edit (by number): ";
+	_choice = getNumber(1, _count);
+	cout << "\nChange what about it?: \n";
+	cout << "1. The Year\n"
+		 << "2. The Month\n"
+		 << "3. The Day\n"
+		 << "4. The Hour\n"
+		 << "5. The Minute\n"
+		 << "6. The Name\n"
+		 << "  Choice: ";
+	_choice2 = getNumber(1, 6);
+	//update time
+	now = time(0);
+	tm *ltm = localtime(&now);
+
+	switch (_choice2) {
+	case 1: {
+		int tmpyear;
+		cout << "\nEnter year: ";
+		tmpyear = getNumber(1900 + ltm->tm_year, 9999);
+		allTasks[_choice - 1].setYear(tmpyear);
+	} break;
+	case 2: {
+		int tmpmonth;
+		cout << "\nEnter month: ";
+		if (allTasks[_choice - 1].getYear() == 1900 + ltm->tm_year) tmpmonth = getNumber(1 + ltm->tm_mon,12);  //limit this year to the months still left
+		else tmpmonth = getNumber(1, 12);  //otherwise future years any month is fine
+		allTasks[_choice - 1].setMonth(tmpmonth);
+	} break;
+	case 3: {
+		int tmpday;
+		cout << "\nEnter day: ";
+		if (allTasks[_choice - 1].getYear() == 1900 + ltm->tm_year && allTasks[_choice - 1].getMonth() == 1 + ltm->tm_mon) {
+			tmpday = getNumber(ltm->tm_mday, 31);  //limit to the number of days left in the month if task is this month
+		} else {
+			tmpday = getNumber(1,31);  //otherwise accept any date (always goes to 31, which needs fixed and set based on days in month)
+		}
+		allTasks[_choice - 1].setDay(tmpday);
+	} break;
+	case 4: {
+		int tmphour;
+		cout << "\nEnter Hour (24h format): ";
+		tmphour = getNumber(0, 23);
+		allTasks[_choice - 1].setHour(tmphour);
+	} break;
+	case 5: {
+		int tmpmin;
+		cout << "\nEnter Minute: ";
+		tmpmin = getNumber(0, 59);
+		allTasks[_choice - 1].setMinute(tmpmin);
+	} break;
+	case 6: {
+		string tmpname = "";
+		do {
+			cout << "\nEnter a task name: ";
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			getline(cin, tmpname);
+			tmpname = reduce(tmpname);  //tighen her up
+		} while (tmpname.size() <= 1);  //cant imagine 1 character being enough to desribe a task...
+		allTasks[_choice - 1].setName(tmpname);
+	} break;
+	default:
+	break;
+	}
+	cout << "\nEdit complete\n";
 	pressEnterToContinue();
 }
 
@@ -308,5 +400,7 @@ bool operator< (const Task& T1, const Task& T2) {
 	}
 	return false;  //rhs is less or lhs == rhs
 }
+
+
 
 
