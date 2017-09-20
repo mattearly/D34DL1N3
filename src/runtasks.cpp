@@ -13,9 +13,9 @@ RunTasks::RunTasks() {  //set local system time at initial run
 	user_dir = getenv("HOME");
 	std::cout << "user_dir = " << user_dir << "\n";
 	if (loadTasklist("testsave1")) {
-		latestMessage.insert(0, "Loaded saved file!");
+		latestMessage = "Loaded saved file!";
 	} else {
-		latestMessage.insert(0, "No file to load from (yet)!");
+		latestMessage = "No file to load from (yet)!";
 	}
 }
 
@@ -32,7 +32,7 @@ void RunTasks::exec() {
 		switch (choice) {
 		case 1:
 			createNewTask();
-			latestMessage.insert(0, "New task created!");
+			latestMessage = "New task created!";
 		break;
 		case 2:
 			removeTask();
@@ -42,7 +42,7 @@ void RunTasks::exec() {
 		break;
 		case 4:
 			sort(allTasks.begin(), allTasks.end());
-			latestMessage.insert(0, "Tasks Sorted!");
+			latestMessage = "Tasks Sorted!";
 		break;
 		case 5:
 			editTask();
@@ -55,11 +55,11 @@ void RunTasks::exec() {
 		break;
 		case 9:
 			if (saveTasklist("testsave1")) {
-				latestMessage.insert(0, "Task state saved!");
+				latestMessage = "Task state saved!";
 			} else if (allTasks.size() < 1) {
-				latestMessage.insert(0, "No tasks on list!");
+				latestMessage = "No tasks on list!";
 			} else {
-				latestMessage.insert(0, "Unable to save!");
+				latestMessage = "Unable to save!";
 			}
 		break;
 		case 0:
