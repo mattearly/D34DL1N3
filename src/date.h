@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _DATE_H_
-#define _DATE_H_
 
 #include <string>
 
@@ -9,6 +7,7 @@ public:
 
 	//compare dates
 	friend bool operator< (const Date& lhs, const Date& rhs);
+//	friend bool operator== (const Date& lhs, const Date& rhs);
 
 	//Valid clamping assumed to be done by input module
 	Date(int mm, int dd, int yyyy) : month(mm), day(dd), year(yyyy), hour(0), minute(1) {}
@@ -41,9 +40,4 @@ private:
 protected:
 
 };
-
-
-
-
-#endif
 

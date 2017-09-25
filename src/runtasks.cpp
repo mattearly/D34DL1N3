@@ -160,11 +160,18 @@ void RunTasks::viewAllTasks() {
 
 void RunTasks::viewHighestPriorityTask() {
 	cout << endl;
+
+	/// OPTION 1, NO TASKS ON LIST
 	if (allTasks.size() < 1) {
 		cout << "No Tasks on list.\n";
 		return;
+
+
+	/// OPTION 2, 1 TASK ON LIST
 	} else if (allTasks.size() == 1) {
 		cout << "___________Priority Task___________\n\n" << allTasks[0].getName()
+
+		// begin display due time
 			 << "\n  Due: " << allTasks[0].getMonth() << "/"
 			 << allTasks[0].getDay() << "/" << allTasks[0].getYear()
 			 << " @ ";
@@ -174,28 +181,81 @@ void RunTasks::viewHighestPriorityTask() {
 		cout << hour << ":"
 			 << setw(2) << std::setfill('0') << right << allTasks[0].getMinute()
 			 << AM_PM << endl;
+		// end display due time
+
 		return;
+
+	/// OPTION 3, MORE THAN 1 TASK ON LIST
 	} else {
 		int highestpri = 0;  //vector location of highest priority task found
-		for (size_t i = 0; i < allTasks.size()-1; i++) {
+		int listsize = (int)allTasks.size();  //size of the list
+		int i = 0;  //for multiple 'for' loops to follow
+
+		//this loop finds the highest priority task in approx 2n time
+		for (i = 0; i < listsize - 1; i++) {
 			if (i == 0 && !(allTasks[i].getRawDate() < allTasks[i+1].getRawDate())) {
 				highestpri = i+1;
 			} else if (!(allTasks[highestpri].getRawDate() < allTasks[i+1].getRawDate())) {
 				highestpri = i+1;
 			}
 		}
-		cout << "___________Priority Task___________\n\n1. "
-			 << allTasks[highestpri].getName()
-			 << "\n   Due: " << allTasks[highestpri].getMonth() << "/"
+		cout << "__________Priority Task(s)__________\n\n1. "
+			 << allTasks[highestpri].getName();
+
+		//display due time
+		cout << " D: " << allTasks[highestpri].getMonth() << "/"
 			 << allTasks[highestpri].getDay()
 			 << "/" << allTasks[highestpri].getYear()
-			 << " @ ";
+			 << "@";
 		string AM_PM = "AM";
 		int hour = allTasks[highestpri].getHour();
 		if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
 		cout << hour << ":"
 			 << setw(2) << std::setfill('0') << right << allTasks[highestpri].getMinute()
-			 << AM_PM << endl;
+			 << AM_PM;/* << endl;*/
+		//end display due time
+
+		//secondary items due the same day
+		int count = 2;
+		for (i = 0; i < listsize - 1; i++) {
+			if (i == highestpri) continue;
+			else if (allTasks[i].getYear() == allTasks[highestpri].getYear()) {
+				if (allTasks[i].getMonth() == allTasks[highestpri].getMonth()) {
+					if (allTasks[i].getDay() == allTasks[highestpri].getDay()) {
+						cout << "\n" << count << ". " << allTasks[i].getName();
+
+						//display due time
+						cout << " D: " << allTasks[highestpri].getMonth() << "/"
+							 << allTasks[highestpri].getDay()
+							 << "/" << allTasks[highestpri].getYear()
+							 << "@";
+						string AM_PM = "AM";
+						int hour = allTasks[highestpri].getHour();
+						if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
+						cout << hour << ":"
+							 << setw(2) << std::setfill('0') << right << allTasks[highestpri].getMinute()
+							 << AM_PM << endl;
+						//end display due time
+
+						count++;
+					}
+				}
+			}
+		}
+		//end secondary items display
+
+				//display due time
+//		cout << " D: " << allTasks[highestpri].getMonth() << "/"
+//			 << allTasks[highestpri].getDay()
+//			 << "/" << allTasks[highestpri].getYear()
+//			 << "@";
+//		string AM_PM = "AM";
+//		int hour = allTasks[highestpri].getHour();
+//		if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
+//		cout << hour << ":"
+//			 << setw(2) << std::setfill('0') << right << allTasks[highestpri].getMinute()
+//			 << AM_PM << endl;
+					//end display due time
 	}
 }
 
@@ -401,6 +461,23 @@ bool operator< (const Task& T1, const Task& T2) {
 	return false;  //rhs is less or lhs == rhs
 }
 
+
+//bool operator== (const Date& lhs, const Date& rhs) {
+//	if (lhs.year == rhs.year) {
+//		if (lhs.month <= rhs.month) {
+//			if (lhs.month < rhs.month) {
+//				if (lhs.day < rhs.day) {
+//					if (lhs.hour <= rhs.hour) {
+//						if (lhs.minute <= rhs.minute) {
+//							return true;  // dates are equal
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
+//	return false;  // dates are not equal
+//}
 
 
 
