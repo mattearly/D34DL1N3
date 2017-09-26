@@ -202,11 +202,8 @@ void RunTasks::viewHighestPriorityTask() {
 		cout << "__________Priority Task(s)__________\n\n1. "
 			 << allTasks[highestpri].getName();
 
-		//display due time
-		cout << " D: " << allTasks[highestpri].getMonth() << "/"
-			 << allTasks[highestpri].getDay()
-			 << "/" << allTasks[highestpri].getYear()
-			 << "@";
+		//display due time of first item on the list
+		cout << " @";
 		string AM_PM = "AM";
 		int hour = allTasks[highestpri].getHour();
 		if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
@@ -215,7 +212,7 @@ void RunTasks::viewHighestPriorityTask() {
 			 << AM_PM;/* << endl;*/
 		//end display due time
 
-		//secondary items due the same day
+		//other items due the same day
 		int count = 2;
 		for (i = 0; i < listsize - 1; i++) {
 			if (i == highestpri) continue;
@@ -224,11 +221,8 @@ void RunTasks::viewHighestPriorityTask() {
 					if (allTasks[i].getDay() == allTasks[highestpri].getDay()) {
 						cout << "\n" << count << ". " << allTasks[i].getName();
 
-						//display due time
-						cout << " D: " << allTasks[highestpri].getMonth() << "/"
-							 << allTasks[highestpri].getDay()
-							 << "/" << allTasks[highestpri].getYear()
-							 << "@";
+						//display time of rest of taks
+						cout << " @";
 						string AM_PM = "AM";
 						int hour = allTasks[highestpri].getHour();
 						if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
@@ -236,6 +230,12 @@ void RunTasks::viewHighestPriorityTask() {
 							 << setw(2) << std::setfill('0') << right << allTasks[highestpri].getMinute()
 							 << AM_PM << endl;
 						//end display due time
+
+						//display due date for these tasks
+						cout << "    Due: " << allTasks[highestpri].getMonth() << "/"
+							 << allTasks[highestpri].getDay()
+							 << "/" << allTasks[highestpri].getYear();
+
 
 						count++;
 					}
