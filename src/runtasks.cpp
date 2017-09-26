@@ -224,10 +224,10 @@ void RunTasks::viewHighestPriorityTask() {
 						//display time of rest of taks
 						cout << " @";
 						string AM_PM = "AM";
-						int hour = allTasks[highestpri].getHour();
+						int hour = allTasks[i].getHour();
 						if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
 						cout << hour << ":"
-							 << setw(2) << std::setfill('0') << right << allTasks[highestpri].getMinute()
+							 << setw(2) << std::setfill('0') << right << allTasks[i].getMinute()
 							 << AM_PM << endl;
 						//end display due time
 
