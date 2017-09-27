@@ -167,7 +167,7 @@ void RunTasks::viewHighestPriorityTask() {
 		return;
 
 
-	/// OPTION 2, 1 TASK ON LIST
+	/// OPTION 2, ONE TASK ON LIST
 	} else if (allTasks.size() == 1) {
 		cout << "___________Priority Task___________\n\n" << allTasks[0].getName()
 
@@ -185,7 +185,7 @@ void RunTasks::viewHighestPriorityTask() {
 
 		return;
 
-	/// OPTION 3, MORE THAN 1 TASK ON LIST
+	/// OPTION 3, MORE THAN ONE TASK ON LIST
 	} else {
 		int highestpri = 0;  //vector location of highest priority task found
 		int listsize = (int)allTasks.size();  //size of the list
@@ -209,10 +209,10 @@ void RunTasks::viewHighestPriorityTask() {
 		if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
 		cout << hour << ":"
 			 << setw(2) << std::setfill('0') << right << allTasks[highestpri].getMinute()
-			 << AM_PM;/* << endl;*/
+			 << AM_PM;
 		//end display due time
 
-		//other items due the same day
+		//more than one due today
 		int count = 2;
 		for (i = 0; i < listsize - 1; i++) {
 			if (i == highestpri) continue;
@@ -221,7 +221,7 @@ void RunTasks::viewHighestPriorityTask() {
 					if (allTasks[i].getDay() == allTasks[highestpri].getDay()) {
 						cout << "\n" << count << ". " << allTasks[i].getName();
 
-						//display time of rest of taks
+						//display time of rest of tasks
 						cout << " @";
 						string AM_PM = "AM";
 						int hour = allTasks[i].getHour();
@@ -235,27 +235,13 @@ void RunTasks::viewHighestPriorityTask() {
 						cout << "    Due: " << allTasks[highestpri].getMonth() << "/"
 							 << allTasks[highestpri].getDay()
 							 << "/" << allTasks[highestpri].getYear();
-
-
 						count++;
 					}
 				}
 			}
 		}
-		//end secondary items display
+		//end more than one due today
 
-				//display due time
-//		cout << " D: " << allTasks[highestpri].getMonth() << "/"
-//			 << allTasks[highestpri].getDay()
-//			 << "/" << allTasks[highestpri].getYear()
-//			 << "@";
-//		string AM_PM = "AM";
-//		int hour = allTasks[highestpri].getHour();
-//		if (hour > 12) { hour = hour - 12; AM_PM = "PM"; }
-//		cout << hour << ":"
-//			 << setw(2) << std::setfill('0') << right << allTasks[highestpri].getMinute()
-//			 << AM_PM << endl;
-					//end display due time
 	}
 }
 
