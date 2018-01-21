@@ -1,4 +1,4 @@
-# D34DL1NE Task Priority
+# CLI Human Task Priority Scheduler
 
 <img src="res/Screenshot - 09112017 - 04:18:19 PM.png" height="248px" align="right">
 
