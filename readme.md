@@ -1,6 +1,6 @@
 # CLI Human Task Priority Scheduler
 
-<img src="res/screenshot_09112017.png" height="248px" align="right">
+<img src="screenshot_09112017.png" height="248px" align="right">
 
 _A prioritization program for the unorganized_
 
