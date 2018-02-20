@@ -4,6 +4,8 @@
 
 _A prioritization program for the unorganized_
 
+Humans are being reprogrammed. 
+
 ### The Project
 
 1. The goal is to build a user-friendly lightweight program that will allow a user to feed in Deadlines. Tasks, homework, or anything.
@@ -44,6 +46,8 @@ _The Main Menu will show the next task that is due, the one you **should** be wo
 	    * option to revise tasks
 	        * these first 2 do the thing then save the file, and give the end user a success or failure message
 	    * option to see Top Tasks (or any or all)
+	4. Repeating Yearly, Monthly, Weekly, <specified day count> tasks can be set up to permantly repeat until removed. 
+		* this allows for users to keep their whole life on specific routines and never forget to renew that yearly or monthly thing that must be upkept. I can see this being used as bill reminders, meeting reminders for groups, really the sky is the limit. The key thing here is that in any case, it remains super simple and straightforward and you just work on the thing at the top of the list in any case.
 
 2. Working Concept
 	* Terminal Version in the works (working, prealpha)
@@ -62,3 +66,7 @@ _The Main Menu will show the next task that is due, the one you **should** be wo
 	* Live Clock Ticker - sort of work, updates anytime the program changes
 	* Build Terminal Graphic Library (scrapped, using cli) 
 	* Show Time Left on a task
+
+4. Humans are being reprogrammed.
+
+I made this because I am terrible at routine. I will not remember to do things that are on a schedule - like monthly or yearly tasks. Most people I know will only do them if they are reminded. It's not like the old days when the time of year and day was significant and the enviornment was our reminder. Now most of us get used to a routine of being at computer screens and learning and updating non-stop. Looking for the new daily fix. With D34DL1NE (deadline, task priority), your schedule is set by you, for you
