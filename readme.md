@@ -2,35 +2,31 @@
 
 <img src="screenshot_09112017.png" height="248px" align="right">
 
-_A prioritization program for the unorganized_
-
-Humans are being reprogrammed. 
+_A prioritization program for busy students with many assignments and deadlines. Never forget to do an assignment again!_
 
 ### The Project
 
-1. The goal is to build a user-friendly lightweight program that will allow a user to feed in Deadlines. Tasks, homework, or anything.
+1. The goal is to build a user-friendly lightweight program that will allow a user to feed in all sorts Deadlines - Tasks, homework, or anything - and have a list of things to do that is automatically prioritized based on Due Date.
 
 ### Basic Use
 
-_The Main Menu will show the next task that is due, the one you **should** be working on. When it doubt, look at this top task and get to work. Stay Focused!_
-
-* Keep adding in new tasks along with their deadline as they come up.
-* Remove tasks as completed.
+* Keep adding in new tasks as they come up - a sure way to never forget to do it in time.
+* Remove tasks when completed.
+* When in doubt, look at the item at the top of your to-do list and get to work. Progress on any item is good time spent.
 
 ### Install (linux command line)
 
-1. ````git clone https://github.com/bytePro17124/D34DL1NE_Task_Priority/````
-2. ````cd D34DL1NE_Task_Priority````
-3. ````make````
-4. ````sudo make install```` (must have sudo unless you already rooted yourself)
-5. you can now run the program at any time in your terminal window by typing in ````dtpriority````
+1. clone repo, go to the directory
+2. run ````make install```` to build and set up the program on your linux machine (also works in Cygwin for Windows)
+	* installs the executable globally, but each linux account user has their own save file
+3. you can now run the program at any time in your terminal by typing in ````dtpriority````
 
 ### Uninstall (2 options from the same makefile used to install)
 
 * ````make uninstall```` removes the program
 * ````make purge```` removes the program and all saved data
 
-### ToDo List / Idea List (in no particular order) (revise frequently) / Feel free to work on this
+### Dev Todo List and Ideas
 
 1. Additional Useful Functions
     1. Add Task Breakdown Feature (idea mainly credited to @ebitikofer) (not implemented yet)
@@ -63,10 +59,6 @@ _The Main Menu will show the next task that is due, the one you **should** be wo
 
 3. Interface Clarity
 	* Clean up / make clearer
-	* Live Clock Ticker - sort of work, updates anytime the program changes
+	* Live Clock Ticker - sort of works, updates anytime the program changes
 	* Build Terminal Graphic Library (scrapped, using cli) 
 	* Show Time Left on a task
-
-4. Humans are being reprogrammed.
-
-I made this because I am terrible at routine. I will not remember to do things that are on a schedule - like monthly or yearly tasks. Most people I know will only do them if they are reminded. It's not like the old days when the time of year and day was significant and the enviornment was our reminder. Now most of us get used to a routine of being at computer screens and learning and updating non-stop. Looking for the new daily fix. With D34DL1NE (deadline, task priority), your schedule is set by you, for you
