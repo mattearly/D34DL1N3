@@ -76,6 +76,7 @@ bool RunTasks::loadTasklist(const string filename)
 		int tmpmonth, tmpday, tmpyear, tmphour, tmpmin;
 		while (getline(in, tmpname))
 		{
+			if(tmpname.size() < 1) continue;
 			in >> tmpmonth >> tmpday >> tmpyear >> tmphour >> tmpmin;
 			Date tmpdate(tmpmonth, tmpday, tmpyear, tmphour, tmpmin);
 			Task tmptask(tmpname, tmpdate);
