@@ -10,11 +10,14 @@
     RunTasks::RunTasks() {  //set local system time at initial run
         now = time(0);
         ltm = localtime(&now);
-        user_dir = getenv("HOME");
+        
+		user_dir = getenv("HOME");  //LINUX HOME PATH
+//		user_dir = getenv("HOMEDRIVE") + getenv("HOMEPATH");  //WINDOWS HOME PATH
+//		user_dir = getpwuid();  //MAC HOME PATH
         std::cout << "user_dir = " << user_dir << "\n";
         if (loadTasklist("testsave1")) {
             latestMessage = "Loaded saved file!";
-        } else {
+        } else {	
             latestMessage = "No file to load from (yet)!";
         }
     }
