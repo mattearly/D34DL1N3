@@ -26,7 +26,7 @@ private:
 	std::time_t now;
 	tm *ltm;
 
-	std::vector<Task> allTasks;
+	std::vector<Task> allTasks;  //holds all live tasks
 
 	std::string latestMessage;  //variable to display the user status updates
 
@@ -44,27 +44,34 @@ private:
 
 	void removeTask(void);  //built in runtasks.cpp
 
+	void editTask(void);  //edit task submenu to make any changes to an existing task
+
 	const char *user_dir;
 
-	bool loadTasklist(const std::string filename);  //built in runtasks_save_load.cpp
+	bool loadTasklist(const std::string filename);  //loads up saved tasks. built in runtasks_save_load.cpp
 
-	bool saveTasklist(const std::string filename);  //built in runtasks_save_load.cpp
+	bool saveTasklist(const std::string filename);  //saves working tasks for later use. built in runtasks_save_load.cpp
+
+	std::vector<std::string> pendingHistory;  //to write out on save
+
+	void addTaskToPendingHistory(Task &);
+
+	void writePendingHistory();  //writes new history to log file and clears pendingHistory vector
+
+	void showHistory();  //shows entire history of completed tasks
 
 	//To build...
 	//
 	//
 
 	//Mark a task as complete option - not sure if this is going to be used
-	void markTaskComplete(const std::size_t loc);
+	// void markTaskComplete(const std::size_t loc);
 
 	//prompt removal of all out of date tasks
-	void cleanTaskList(void);
+	// void cleanTaskList(void);
 
 	//based on exact name
-	void removeTask(const std::string taskname);
-
-	//edit task submenu to make any changes to an existing task
-	void editTask(void);
+	// void removeTask(const std::string taskname);
 
 };
 
