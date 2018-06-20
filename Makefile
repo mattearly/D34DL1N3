@@ -16,29 +16,29 @@
 
 TARGET = dtpriority
 DEL = -rm
-.PHONY: all new clean install uninstall
+.PHONY: all new clean install uninstall purge
 
 all:
-	+$(MAKE) -C src
+	+$(MAKE) -C src $(TARGET)
 
 new:
-	+$(MAKE) -C ./ clean
-	+$(MAKE) -C ./
+	+$(MAKE) clean
+	+$(MAKE) all
 
 clean:
 	$(DEL) $(TARGET)
 	+$(MAKE) -C src $@
 
-install:
-	-mkdir -p $(HOME)/.$(TARGET)
-	chmod u+rw -R $(HOME)/.$(TARGET)
+install: all
+	mkdir -p $(HOME)/.$(TARGET)
+	chmod 644 -R $(HOME)/.$(TARGET)
 	install -m 755 $(TARGET) /usr/local/bin/
 
 uninstall:
-	-rm /usr/local/bin/$(TARGET)
+	rm /usr/local/bin/$(TARGET)
 
 purge:
 	-rm -rf $(HOME)/.dtpriority
-	-rm /usr/local/bin/$(TARGET)
+	rm /usr/local/bin/$(TARGET)
 
 
