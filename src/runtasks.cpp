@@ -104,7 +104,7 @@ int RunTasks::menu(pair<int, int> &__minmax)
     cout << "\n ->" << latestMessage << "\n\n"
          << "_____________Main Menu_____________\n"
          << left
-         << setw(16) << "1. Add Task" << " | " << "6. Show Completed History" << endl
+         << setw(16) << "1. Add Task" << " | " << "6. Show History" << endl
          << setw(16) << "2. Remove Task" << " | " << "7. " << endl
          << setw(16) << "3. See Tasks" << " | " << "8. " << endl
          << setw(16) << "4. Sort Tasks" << " | " << "9. Save State" << endl
