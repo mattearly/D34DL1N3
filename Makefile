@@ -1,5 +1,5 @@
 TARGET = dtpriority
-DEL = -rm
+DEL = -rm -f
 .PHONY: all new clean install uninstall purge help
 
 all:
@@ -16,7 +16,10 @@ clean:
 install: all
 	mkdir -p $(HOME)/.$(TARGET)
 	chmod 755 $(HOME)/.$(TARGET)
-	install -m 755 $(TARGET) /usr/local/bin/
+	+$(MAKE) -C finalize
+
+finalize: 
+	sudo install -m 755 $(TARGET) /usr/local/bin/
 
 uninstall:
 	rm /usr/local/bin/$(TARGET)
