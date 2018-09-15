@@ -12,7 +12,7 @@ clean:
 install: all
 	mkdir -p $(HOME)/.$(TARGET)
 	chmod 755 $(HOME)/.$(TARGET)
-	+$(MAKE) -C finalize
+	+$(MAKE) finalize
 
 finalize: 
 	sudo install -m 755 $(TARGET) /usr/local/bin/
