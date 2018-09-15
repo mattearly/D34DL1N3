@@ -15,7 +15,7 @@ clean:
 
 install: all
 	mkdir -p $(HOME)/.$(TARGET)
-	chmod 644 -R $(HOME)/.$(TARGET)
+	chmod 744 $(HOME)/.$(TARGET)
 	install -m 755 $(TARGET) /usr/local/bin/
 
 uninstall:
