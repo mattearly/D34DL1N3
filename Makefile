@@ -26,7 +26,7 @@ purge:
 	rm /usr/local/bin/$(TARGET)
 
 help:
-	@echo "valid 'make' options:"
+	@echo "valid 'make' options(use sudo as needed):"
 	@echo "'make'"
 	@echo "  -Builds any needed files"
 	@echo "'make new'"
