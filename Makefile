@@ -1,13 +1,9 @@
 TARGET = dtpriority
-DEL = -rm
+DEL = rm -rf
 .PHONY: all new clean install uninstall purge help
 
 all:
 	+$(MAKE) -C src $(TARGET)
-
-new:
-	+$(MAKE) clean
-	+$(MAKE) all
 
 clean:
 	$(DEL) $(TARGET)
@@ -15,28 +11,34 @@ clean:
 
 install: all
 	mkdir -p $(HOME)/.$(TARGET)
-	chmod 644 -R $(HOME)/.$(TARGET)
-	install -m 755 $(TARGET) /usr/local/bin/
+	chmod 755 $(HOME)/.$(TARGET)
+	+$(MAKE) finalize
+
+finalize: 
+	sudo install -m 755 $(TARGET) /usr/local/bin/
 
 uninstall:
-	rm /usr/local/bin/$(TARGET)
+	sudo $(DEL) /usr/local/bin/$(TARGET)
 
 purge:
-	-rm -rf $(HOME)/.dtpriority
-	rm /usr/local/bin/$(TARGET)
+	$(DEL) $(HOME)/.$(TARGET)
+	sudo $(DEL) /usr/local/bin/$(TARGET)
+
+full-purge:
+	+$(MAKE) clean
+	+$(MAKE) purge
 
 help:
 	@echo "valid 'make' options:"
-	@echo "1. 'make'"
-	@echo "  -Builds any needed files"
-	@echo "2. 'make new'"
-	@echo "  -Removes all previously built files and rebuilds"
-	@echo "4. 'make clean'"
-	@echo "  -Removes all previously built files"
-	@echo "5. 'make install'"
-	@echo "  -installs the program and it's required directory for saving"
-	@echo "6. 'make uninstall'"
-	@echo "  -removes the program"
-	@echo "7. 'make purge'"
-	@echo "  -removes the program and any saved data"
-	
+	@echo "'make'"
+	@echo "  -builds any needed files"
+	@echo "'make clean'"
+	@echo "  -removes all previously built files"
+	@echo "'make install'"
+	@echo "  -installs the program and it's required directory for saving, will ask for root access"
+	@echo "'make uninstall'"
+	@echo "  -removes the install, will ask for root access"
+	@echo "'make purge'"
+	@echo "  -removes the install and any saved data, will ask for root access"
+	@echo "'make full-purge'"
+	@echo "  -removes all built files, removes the install and saved data, will ask for root access"
