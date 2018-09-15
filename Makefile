@@ -27,16 +27,16 @@ purge:
 
 help:
 	@echo "valid 'make' options:"
-	@echo "1. 'make'"
+	@echo "'make'"
 	@echo "  -Builds any needed files"
-	@echo "2. 'make new'"
+	@echo "'make new'"
 	@echo "  -Removes all previously built files and rebuilds"
-	@echo "4. 'make clean'"
+	@echo "'make clean'"
 	@echo "  -Removes all previously built files"
-	@echo "5. 'make install'"
+	@echo "'make install'"
 	@echo "  -installs the program and it's required directory for saving"
-	@echo "6. 'make uninstall'"
+	@echo "'make uninstall'"
 	@echo "  -removes the program"
-	@echo "7. 'make purge'"
+	@echo "'make purge'"
 	@echo "  -removes the program and any saved data"
 	
