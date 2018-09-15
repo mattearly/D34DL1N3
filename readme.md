@@ -13,13 +13,13 @@ _A prioritization program for busy students with many assignments and deadlines.
 * Terminal Interface
 * Add/Remove Tasks
 * Load/Save Tasks saved in user profile
-* Date Comparison Checks (doesn't allow illegal dates)
-* Make the program Installable on Linux (working, prealpha)
-* Logs - Shows history of completed tasks
+* Date Comparison Checks - doesn't allow illegal dates
+* Linux installer
+* Logs - shows history of completed tasks
 
 ## Basic Use Cycle
 
-* Keep adding in new tasks as they come up - a sure way to never forget to do it in time.
+* Keep adding in new tasks as they come up or as assigned.
 * Remove tasks when completed. These will be saved in completed history.
 * When in doubt, look at the item at the top of your to-do list and get to work. Progress on any item is good time spent.
 
