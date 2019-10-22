@@ -1,27 +1,14 @@
-# D34DL1N3 - task priority in command line interface
+# D34DL1N3
 
-<img src="screenshot_09112017.png" height="248px" align="right">
+Task priority in command line interface.
 
-_A prioritization program for busy students with many assignments and deadlines. Never forget to do something again!_
+<img src="screenshot_09112017.png" align="center">
 
-## The Project
+### Basic Use Cycle
 
-1. The goal is to build a user-friendly lightweight program that will allow a user to feed in all sorts Deadlines - Tasks, homework, or anything - and have a list of things to do that is automatically prioritized based on Due Date.
-
-## Features
-
-* Terminal Interface
-* Add/Remove Tasks
-* Load/Save Tasks saved in user profile
-* Date Comparison Checks - doesn't allow illegal dates
-* Linux installer
-* Logs - shows history of completed tasks
-
-## Basic Use Cycle
-
-* Keep adding in new tasks as they come up or as assigned.
-* Remove tasks when completed. These will be saved in completed history.
-* When in doubt, look at the item at the top of your to-do list and get to work. Progress on any item is good time spent.
+1. Add tasks with a hard due date.
+2. Remove tasks when completed.
+3. Look at the item at the top of your to-do list and get to work. Progress on any item is good time spent.
 
 ### Install (linux command line)
 
@@ -31,6 +18,10 @@ _A prioritization program for busy students with many assignments and deadlines.
 3. execute the program by entering the command ````dtpriority```` in your terminal
 
 ````make help```` shows other options available on the makefile
+
+## The D34DL1N3 Project
+
+1. The goal is to build a user-friendly lightweight program that will allow a user to feed in all sorts Deadlines - Tasks, homework, or anything - and have a list of things to do that is automatically prioritized based on Due Date.
 
 ### Dev Todo List, Ideas, future updates, etc
 
