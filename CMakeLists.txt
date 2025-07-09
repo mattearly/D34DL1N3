@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.0)
+project(D34DL1N3)
+set(CMAKE_CXX_STANDARD 17)
+file(GLOB_RECURSE SRC "src/*.cpp")
+file(GLOB_RECURSE HDR "src/*.h")
+add_executable(D34DL1N3 ${HDR} ${SRC})
